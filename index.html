@@ -171,9 +171,19 @@ details.panel[open]>summary .t::after{content:" ↑"}
 .gantt .lab.clickable{cursor:pointer;color:var(--indigo);font-weight:600}
 .gantt .hd{padding:8px 2px;text-align:center;color:var(--texte-2);border-left:1px solid var(--filet);line-height:1.25;font-size:12px}
 .gantt .hd b{display:block;color:var(--encre);font:700 13px/17px var(--titre)}
-.gantt .hd.now,.gantt .cell.now{background:var(--indigo-pale)}
+.gantt .hd.now{background:var(--indigo-pale)}
+.gantt .hdtrack{display:grid}
+.gantt .track{position:relative;border-top:1px solid var(--filet);min-height:38px;background-image:linear-gradient(to right,var(--filet) 1px,transparent 1px);background-repeat:repeat-x}
+.gantt .nowband{position:absolute;top:0;bottom:0;background:var(--indigo-pale)}
+.gantt .today{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--indigo);z-index:1}
+.gantt .pt{position:absolute;top:50%;margin:-7px 0 0 -7px;z-index:2;padding:0;cursor:pointer}
+.gantt .pt.t-mission{background:var(--indigo);border-color:var(--indigo)}
+.gantt .pt.t-rencontre{background:var(--vert-bg);border-color:var(--vert)}
+.gantt .pt.t-absence{background:var(--lavande);border-color:var(--texte-2)}
+.gantt .pt.t-autre{background:var(--sable-bg);border-color:var(--sable)}
+.gantt .plab{position:absolute;top:50%;transform:translateY(-50%);margin-left:12px;font-size:12px;font-weight:600;color:var(--texte-fort);white-space:nowrap;z-index:2;pointer-events:none}
 .gantt .cell{border-left:1px solid var(--filet);border-top:1px solid var(--filet);min-height:34px;position:relative}
-.gantt .gbar{position:relative;z-index:1;margin:6px 2px;border-radius:var(--r-tag);padding:3px 8px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff;background:var(--indigo);border:0;display:block;min-height:22px;width:calc(100% - 4px);text-align:left;cursor:pointer}
+.gantt .gbar{position:absolute;top:7px;z-index:2;margin:0;min-width:10px;border-radius:var(--r-tag);padding:3px 8px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff;background:var(--indigo);border:0;display:block;min-height:22px;text-align:left;cursor:pointer}
 .gantt .gbar.t-echeance{background:var(--jaune-bg);color:var(--jaune)}
 .gantt .gbar.t-absence{background:var(--lavande);color:var(--texte)}
 .gantt .gbar.t-rencontre{background:var(--vert-bg);color:var(--vert)}
@@ -673,40 +683,57 @@ function renderRemarques(){
 }
 
 /* Planning */
+const fDayShort=new Intl.DateTimeFormat("fr-FR",{weekday:"short",day:"numeric",month:"short"});
+function planDates(it){
+  let d=it.debut||"",f=it.fin||it.debut||"";
+  if(!it.exact&&f){const fd=parseISO(f);if(fd&&fd.getDay()===1)f=toISO(addDays(fd,4))}
+  if(f<d)f=d;return{d,f};
+}
+function planRange(it){const{d,f}=planDates(it);const a=parseISO(d),b=parseISO(f);if(!a)return "";
+  return d===f?fDayShort.format(a):`du ${fDayShort.format(a)} au ${fDayShort.format(b)}${a.getFullYear()!==b.getFullYear()?" "+b.getFullYear():""}`}
 function renderPlanning(){
-  const ws=weeks(),cw=currentWeek(),items=coll("planning").sort((a,b)=>(a.debut||"").localeCompare(b.debut||""));
-  const cols=`minmax(130px,190px) repeat(${ws.length},minmax(46px,1fr))`;
-  const hd=`<div class="lab hd" style="border-top:0;text-align:left">Semaine</div>`+ws.map(w=>`<div class="hd${w===cw?" now":""}"><b>S${weekIndex(w)}</b>${esc(fShort.format(parseISO(w)).replace(".",""))}</div>`).join("");
-  const rowOf=(label,cells,cls,attr)=>`<div class="lab${cls||""}"${attr||""} title="${esc(label)}">${esc(label)}</div>`+cells;
-  const emptyCells=fn=>ws.map((w,i)=>`<div class="cell${w===cw?" now":""}">${fn(w,i)||""}</div>`).join("");
+  const ws=weeks(),cw=currentWeek(),n=ws.length,t0=parseISO(ws[0]),total=n*7;
+  const dayIdx=iso=>{const x=parseISO(iso);return x?Math.round((x-t0)/864e5):0};
+  const pct=v=>(Math.max(0,Math.min(total,v))/total*100).toFixed(3)+"%";
+  const items=coll("planning").map(it=>Object.assign({},it,{_d:planDates(it)})).sort((a,b)=>a._d.d.localeCompare(b._d.d)||a._d.f.localeCompare(b._d.f));
+  const today=toISO(new Date()),ti=dayIdx(today),cwi=ws.indexOf(cw);
+  const cols=`minmax(130px,190px) minmax(${n*58}px,1fr)`;
+  const deco=`${cwi>=0?`<span class="nowband" style="left:${pct(cwi*7)};width:${pct(7)}"></span>`:""}${ti>=0&&ti<total?`<span class="today" style="left:${pct(ti+.5)}" title="Aujourd'hui"></span>`:""}`;
+  const track=(inner,extra)=>`<div class="track" style="background-size:calc(100% / ${n}) 100%"${extra||""}>${deco}${inner}</div>`;
+  const hd=`<div class="lab hd" style="border-top:0;text-align:left">Semaine</div><div class="hdtrack" style="grid-template-columns:repeat(${n},1fr)">`+ws.map(w=>`<div class="hd${w===cw?" now":""}"><b>S${weekIndex(w)}</b>${esc(fShort.format(parseISO(w)).replace(".",""))}</div>`).join("")+`</div>`;
+  const rowOf=(label,inner,cls,attr)=>`<div class="lab${cls||""}"${attr||""} title="${esc(label)}">${esc(label)}</div>`+track(inner);
+  const point=(iso,cls,title,label)=>`<span class="pt mark${cls?" "+cls:""}" style="left:${pct(dayIdx(iso)+.5)}" title="${esc(title)}"></span>${label?`<span class="plab" style="left:${pct(dayIdx(iso)+.5)}">${esc(label)}</span>`:""}`;
   let rows="";
   items.forEach(it=>{
-    const a=Math.max(0,ws.indexOf(it.debut)),bRaw=ws.indexOf(it.fin||it.debut),b=bRaw<0?a:Math.max(a,bRaw);
-    let cells="";for(let i=0;i<ws.length;i++){const w=ws[i];if(i===a){cells+=`<div class="cell${w===cw?" now":""}" style="grid-column:span ${b-a+1}"><button type="button" class="gbar t-${esc(it.type||"mission")}" data-action="planedit" data-v="${it.id}" title="${esc(it.libelle)}">${esc(it.libelle)}</button></div>`;i=b;continue}cells+=`<div class="cell${w===cw?" now":""}"></div>`}
-    rows+=rowOf(it.libelle||"Sans titre",cells,readOnly?"":" clickable",readOnly?"":` data-action="planedit" data-v="${it.id}"`);
+    const s0=dayIdx(it._d.d),e0=dayIdx(it._d.f)+1,span=e0-s0,title=(it.libelle||"")+" · "+planRange(it);
+    let inner;
+    if(span<=2){inner=`<button type="button" class="pt mark t-${esc(it.type||"mission")}" style="left:${pct((s0+e0)/2)}" data-action="planedit" data-v="${it.id}" title="${esc(title)}" aria-label="${esc(title)}"></button><span class="plab" style="left:${pct((s0+e0)/2)}">${esc(it.libelle||"")}</span>`}
+    else inner=`<button type="button" class="gbar t-${esc(it.type||"mission")}" style="left:${pct(s0)};width:${pct(span)}" data-action="planedit" data-v="${it.id}" title="${esc(title)}">${esc(it.libelle||"")}</button>`;
+    rows+=rowOf(it.libelle||"Sans titre",inner,readOnly?"":" clickable",readOnly?"":` data-action="planedit" data-v="${it.id}"`);
   });
   const ech=coll("missions").filter(m=>m.echeance);
-  if(ech.length)rows+=rowOf("Échéances des missions",emptyCells(w=>{const n=ech.filter(m=>toISO(mondayOf(parseISO(m.echeance)))===w);return n.length?`<span class="mark" title="${esc(n.map(m=>m.titre).join(", "))}"></span>`:""}));
-  rows+=rowOf("Bilans de quinzaine",emptyCells((w,i)=>{if((i+1)%2===0||i===ws.length-1){const q=Math.ceil((i+1)/2);const done=(getDoc("bilans/q"+q)||{}).statut==="fait";return `<span class="mark b${done?" done":""}" title="Bilan n° ${q}${done?" réalisé":""}"></span>`}return""}));
-  const it=planEdit&&getDoc("planning/"+planEdit)?{id:planEdit,...getDoc("planning/"+planEdit)}:null;
-  const wopt=sel=>ws.map(w=>`<option value="${w}"${w===sel?" selected":""}>${esc(weekLabel(w))}</option>`).join("");
-  const form=readOnly?"":it?`<section class="block"><div class="block-head"><h2>Modifier : ${esc(it.libelle||"")}</h2><button class="btn ghost" data-action="planedit" data-v="">Fermer</button></div><div class="panel stack">
+  if(ech.length)rows+=rowOf("Échéances des missions",ech.map(m=>point(m.echeance,"",(m.titre||"Mission")+" · "+fDayShort.format(parseISO(m.echeance)))).join(""));
+  rows+=rowOf("Bilans de quinzaine",quinzaines().map(q=>{const done=(getDoc("bilans/q"+q.n)||{}).statut==="fait";const iso=(getDoc("bilans/q"+q.n)||{}).date||quinzaineEnd(q);return point(iso,"b"+(done?" done":""),`Bilan n° ${q.n}${done?" réalisé":""} · ${fDayShort.format(parseISO(iso))}`)}).join(""));
+  const list=items.length?`<div class="items">${items.map(it=>`<div class="item"><div class="item-head"><span class="pill ${({mission:"acc",echeance:"warn",rencontre:"ok",absence:"",autre:""})[it.type||"mission"]}">${esc(lookup(PLAN_TYPES,it.type||"mission")[1])}</span><span class="t">${esc(it.libelle||"Sans titre")}</span><span class="small muted">${esc(planRange(it))}</span>${readOnly?"":`<button class="btn ghost" data-action="planedit" data-v="${it.id}">Modifier</button>`}</div>${it.note?`<div class="small muted">${esc(it.note)}</div>`:""}</div>`).join("")}</div>`:"";
+  const it=planEdit&&getDoc("planning/"+planEdit)?(x=>Object.assign({id:planEdit},x,{_d:planDates(x)}))(getDoc("planning/"+planEdit)):null;
+  const lim=` min="${esc(toISO(t0))}" max="${esc(toISO(addDays(t0,total-1)))}"`;
+  const form=readOnly?"":it?`<section class="block" id="planform"><div class="block-head"><h2>Modifier : ${esc(it.libelle||"")}</h2><button class="btn ghost" data-action="planedit" data-v="">Fermer</button></div><div class="panel stack">
      <div class="grid2"><label class="field"><span>Libellé</span><input type="text" id="pe-l" data-bind="planning/${it.id}|libelle" value="${esc(it.libelle||"")}"></label>
      <label class="field"><span>Type</span><select id="pe-t" data-bind="planning/${it.id}|type">${opt(PLAN_TYPES,it.type||"mission")}</select></label>
-     <label class="field"><span>Début</span><select id="pe-d" data-bind="planning/${it.id}|debut">${wopt(it.debut)}</select></label>
-     <label class="field"><span>Fin</span><select id="pe-f" data-bind="planning/${it.id}|fin">${wopt(it.fin||it.debut)}</select></label></div>
+     <label class="field"><span>Du</span><input type="date" id="pe-d" data-bind="planning/${it.id}|debut" value="${esc(it._d.d)}"${lim}></label>
+     <label class="field"><span>Au</span><input type="date" id="pe-f" data-bind="planning/${it.id}|fin" value="${esc(it._d.f)}"${lim}></label></div>
      <label class="field"><span>Note</span><input type="text" id="pe-n" data-bind="planning/${it.id}|note" value="${esc(it.note||"")}"></label>
-     <div><button class="btn danger" data-action="del" data-path="planning/${it.id}">Supprimer cette ligne</button></div></div></section>`
+     <div><button class="btn danger" data-action="del" data-path="planning/${it.id}">Supprimer</button></div></div></section>`
    :`<section class="block"><h2>Ajouter au planning</h2><form class="panel stack" data-form="planning"><div class="grid2">
      <label class="field"><span>Libellé</span><input type="text" name="libelle" id="np-l" required placeholder="Ex. revue de littérature"></label>
      <label class="field"><span>Type</span><select name="type" id="np-t">${opt(PLAN_TYPES,"mission")}</select></label>
-     <label class="field"><span>Début</span><select name="debut" id="np-d">${wopt(cw)}</select></label>
-     <label class="field"><span>Fin</span><select name="fin" id="np-f">${wopt(cw)}</select></label></div>
+     <label class="field"><span>Du</span><input type="date" name="debut" id="np-d" required${lim}></label>
+     <label class="field"><span>Au</span><input type="date" name="fin" id="np-f"${lim}><span class="src">Laissez vide pour un seul jour.</span></label></div>
      <div><button class="btn primary" type="submit">Ajouter</button></div></form></section>`;
   return `<section class="block"><div class="block-head"><h2>Planning prévisionnel</h2><div class="legend">${PLAN_TYPES.map(([k,l])=>`<span class="lg-${k}">${l}</span>`).join("")}</div></div>
    <div class="gantt-wrap"><div class="gantt" style="grid-template-columns:${cols}">${hd}${rows}</div></div>
-   ${items.length?"":`<p class="small muted">Le planning est vide. Ajoutez les grandes étapes du stage ci-dessous : missions, échéances, rendez-vous, congés.</p>`}
-   ${it&&it.note?`<p class="small muted">${esc(it.note)}</p>`:""}</section>${form}`;
+   <p class="small muted" style="margin:0">Chaque colonne est une semaine, du lundi au dimanche. Le trait indigo marque aujourd'hui. Les occurrences d'un ou deux jours apparaissent sous forme de losange.</p>
+   ${items.length?`<h3>Occurrences</h3>${list}`:`<p class="small muted">Le planning est vide. Ajoutez les grandes étapes du stage ci-dessous : missions, échéances, rendez-vous, congés.</p>`}</section>${form}`;
 }
 
 /* Gratification */
@@ -829,6 +856,7 @@ app.addEventListener("input",e=>{
 app.addEventListener("change",e=>{
   const el=e.target;
   if(el.dataset&&el.dataset.bind){const{path,field,v}=bindValue(el);
+    if(path.startsWith("planning/")&&(field==="debut"||field==="fin")){if(!v)return;edit(path,d=>{const pd=planDates(d);d.debut=pd.d;d.fin=pd.f;d[field]=v;if(d.fin<d.debut){if(field==="debut")d.fin=d.debut;else d.debut=d.fin}d.exact=true},0);scheduleRender();return}
     if(el.tagName==="TEXTAREA"||el.type==="text"||el.type==="number"){edit(path,d=>setIn(d,field,v),0);if(el.type==="number")scheduleRender();return}
     if(el.type==="range"){edit(path,d=>setIn(d,field,v),0);scheduleRender();return}
     edit(path,d=>setIn(d,field,v),0);scheduleRender();return}
@@ -845,7 +873,7 @@ app.addEventListener("click",e=>{
   else if(a==="role"){role=v;ls.set("carnet-role",v);scheduleRender()}
   else if(a==="demfilter"){demFilter=v;scheduleRender()}
   else if(a==="gobilan"){openBilan=Number(v);pendingBilan=true}
-  else if(a==="planedit"){planEdit=v||null;scheduleRender();if(v)setTimeout(()=>{const f=document.getElementById("pe-l");if(f)f.scrollIntoView({block:"center"})},60)}
+  else if(a==="planedit"){planEdit=v||null;scheduleRender();if(v)setTimeout(()=>{const f=document.getElementById("planform");if(f)f.scrollIntoView({block:"start",behavior:"smooth"})},60)}
   else if(a==="del"){
     if(!el.classList.contains("armed")){el.classList.add("armed");const t=el.textContent;el.dataset.t=t;el.textContent="Confirmer la suppression";setTimeout(()=>{if(el.isConnected){el.classList.remove("armed");el.textContent=el.dataset.t}},4000);return}
     if(el.dataset.path.startsWith("planning/"))planEdit=null;
@@ -864,7 +892,7 @@ app.addEventListener("submit",e=>{
   if(kind==="mission")edit("missions/"+id,d=>Object.assign(d,{titre:fd.titre.trim(),statut:fd.statut,echeance:fd.echeance||"",livrable:fd.livrable||"",description:fd.description||"",cree:now}),0);
   if(kind==="demande")edit("demandes/"+id,d=>Object.assign(d,{type:fd.type,objet:fd.objet.trim(),detail:fd.detail||"",echeance:fd.echeance||"",semaine:fd.semaine,auteur:role,statut:"en_attente",reponse:"",cree:now}),0);
   if(kind==="remarque")edit("remarques/"+id,d=>Object.assign(d,{texte:fd.texte.trim(),date:fd.date||toISO(new Date()),cat:fd.cat,auteur:role,cree:now}),0);
-  if(kind==="planning"){let a=fd.debut,b=fd.fin;if(b<a)[a,b]=[b,a];edit("planning/"+id,d=>Object.assign(d,{libelle:fd.libelle.trim(),type:fd.type,debut:a,fin:b,note:"",cree:now}),0)}
+  if(kind==="planning"){let a=fd.debut,b=fd.fin||fd.debut;if(!a)return;if(b<a)[a,b]=[b,a];edit("planning/"+id,d=>Object.assign(d,{libelle:fd.libelle.trim(),type:fd.type,debut:a,fin:b,exact:true,note:"",cree:now}),0)}
   f.reset();scheduleRender();
 });
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(VIEWS.some(v=>v[0]===h)){view=h;scheduleRender();window.scrollTo({top:0})}});
