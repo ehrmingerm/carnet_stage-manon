@@ -239,7 +239,7 @@ footer.pied a{color:var(--texte-3);font-weight:400;text-decoration:underline}
 <header class="band"><div class="wrap"><div class="page" id="band"></div></div></header>
 <nav class="tabs" aria-label="Rubriques"><div class="wrap" id="tabs"></div></nav>
 <main><div class="wrap" id="app"><p class="muted">Chargement du carnet…</p></div></main>
-<footer class="pied"><div class="wrap"><a href="https://communication-santementale.fr/" target="_blank" rel="noopener">communication-santementale.fr</a> · © 2026 Mickaël Worms-Ehrminger · Communiquer en santé mentale</div></footer>
+<footer class="pied"><div class="wrap"><a href="guide.html">Guide d'utilisation</a> · <a href="https://communication-santementale.fr/" target="_blank" rel="noopener">communication-santementale.fr</a> · © 2026 Mickaël Worms-Ehrminger · Communiquer en santé mentale</div></footer>
 
 <script>
 (function(){
@@ -407,7 +407,7 @@ function renderSetup(){
    <p style="margin:0">Les données du carnet sont enregistrées dans le dépôt privé <b>${esc(GH.owner)}/${esc(GH.repo)}</b>, dans le fichier <code>${esc(GH.file)}</code>. Cette page n'en contient aucune. Pour les lire et les modifier, collez votre jeton GitHub personnel.</p>
    <p style="margin:0"><b>Propriétaire du dépôt</b> : Settings, Developer settings, Personal access tokens, Fine-grained tokens. Accès limité à ce seul dépôt, permission Contents en lecture et écriture.</p>
    <p style="margin:0"><b>Collaboratrice ou collaborateur</b> : GitHub n'accepte pas les jetons à portée limitée sur le dépôt personnel d'une autre personne. Créez un jeton classique : Settings, Developer settings, Personal access tokens, Tokens (classic), case <code>repo</code>, avec une date d'expiration couvrant le stage.</p>
-   <p style="margin:0">Le jeton reste enregistré sur ce navigateur uniquement. Le détail figure dans le fichier README du dépôt.</p>
+   <p style="margin:0">Le jeton reste enregistré sur ce navigateur uniquement. Pas à pas : <a href="guide.html#demarrer">guide d'utilisation</a>.</p>
   </div>
   <form class="panel stack" data-form="token">
    <label class="field"><span>Jeton GitHub</span><input type="password" name="token" id="tok" autocomplete="off" required placeholder="github_pat_… ou ghp_…"></label>
