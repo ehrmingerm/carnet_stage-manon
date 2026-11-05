@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Fiche de mission du stage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Charte « Communiquer en santé mentale » : colonne de lecture sur surface blanche arrondie, fond blanc cassé, accent indigo unique. Mode clair imposé par la charte. */
+:root{
+  color-scheme: light;
+  --indigo:#4338F2; --indigo-clair:#A9A4FF; --encre:#0E0F12; --texte-fort:#23252C; --texte:#3B3E48;
+  --texte-2:#5B5F6A; --texte-3:#6B6F7A; --bordure:#E6E6EA; --filet:#EEEEF2;
+  --fond:#F7F7F5; --surface:#FFFFFF; --lavande:#F1F0F8; --indigo-pale:#ECEBFF;
+  --comprendre:#2A1FB8;
+  --titre:'Bricolage Grotesque',Arial,Helvetica,sans-serif;
+  --corps:'Instrument Sans',Arial,Helvetica,sans-serif;
+  --r-page:28px; --r-carte:22px; --r-petit:18px; --r-tag:8px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--fond); color:var(--texte);
+  font:400 16px/1.6 var(--corps);
+  padding-block:32px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:780px; margin:0 auto; background:var(--surface); border:1px solid var(--bordure); border-radius:var(--r-page); padding:36px 44px 40px}
+h1,h2,h3,h4{font-family:var(--titre); color:var(--encre); margin:0; text-wrap:balance}
+h1{font-size:40px; line-height:43px; font-weight:700; letter-spacing:-1.4px}
+h2{font-size:26px; line-height:30px; font-weight:700; letter-spacing:-.6px}
+h3{font-size:19px; line-height:24px; font-weight:600; letter-spacing:-.3px}
+p{margin:0}
+a{color:var(--indigo); font-weight:600; text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--indigo); outline-offset:2px; border-radius:4px}
+i{font-style:italic}
+
+/* En-tête */
+.entete{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid var(--bordure)}
+.logo{display:flex; align-items:center; gap:12px}
+.logo-carre{width:36px; height:36px; border-radius:10px; background:var(--indigo); color:#fff; display:grid; place-items:center; font:700 20px/1 var(--titre); padding-top:6px}
+.logo-texte{display:flex; flex-direction:column; line-height:1.1}
+.logo-texte b{font:700 17px/1.1 var(--titre); color:var(--encre); letter-spacing:-.3px}
+.logo-texte span{font:400 14px/1.2 var(--corps); color:var(--texte-2)}
+.mention{text-align:right; font-size:13px; line-height:18px}
+.mention b{display:block; font-weight:600; color:var(--encre)}
+.mention span{color:var(--texte-2)}
+
+/* Ouverture */
+.ouverture{padding:32px 0 4px; display:flex; flex-direction:column; gap:12px}
+.sur-titre{font:600 13px/18px var(--corps); color:var(--indigo)}
+.chapo{font-size:17px; line-height:27px; max-width:62ch}
+
+/* Sections */
+section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
+.section-tete{display:flex; flex-direction:column; gap:6px; margin-bottom:22px}
+.sous-titre{font-size:15px; line-height:22px; color:var(--texte-2); max-width:64ch}
+.texte{font-size:16px; line-height:25px; max-width:64ch}
+.apres{margin-top:18px}
+.note{font-size:14px; line-height:21px; color:var(--texte-2); max-width:64ch}
+
+/* Informations générales */
+.infos{display:grid; grid-template-columns:180px 1fr; margin:0}
+.infos dt,.infos dd{padding:12px 0; border-bottom:1px solid var(--filet); margin:0}
+.infos dt{font-size:14px; line-height:22px; color:var(--texte-2); font-weight:500}
+.infos dd{font-size:15px; line-height:23px; color:var(--texte-fort); min-width:0}
+.infos dt:last-of-type,.infos dd:last-of-type{border-bottom:0}
+.infos .grand{font:700 20px/24px var(--titre); color:var(--encre); letter-spacing:-.3px}
+.domaines{display:flex; flex-wrap:wrap; gap:6px}
+
+/* Étiquettes */
+.tag{display:inline-block; font:700 13px/18px var(--corps); padding:3px 9px; border-radius:var(--r-tag); white-space:nowrap; background:var(--lavande); color:var(--texte)}
+.tag-indigo{background:var(--indigo-pale); color:var(--comprendre)}
+
+/* Référentiel */
+.niveaux{display:flex; flex-direction:column; gap:12px}
+.niveau{border:1px solid var(--bordure); border-radius:var(--r-petit); padding:18px 20px; display:grid; grid-template-columns:120px repeat(3, minmax(0,1fr)); gap:16px}
+.niveau-nom{display:flex; flex-direction:column; gap:4px}
+.niveau-nom .num{font:700 13px/18px var(--corps); color:var(--indigo)}
+.niveau-nom b{font:700 19px/23px var(--titre); color:var(--encre); letter-spacing:-.3px}
+.niveau .col{min-width:0}
+.niveau h4{font:600 13px/18px var(--corps); color:var(--texte-2); margin-bottom:4px}
+.niveau p{font-size:14px; line-height:21px; color:var(--texte-fort)}
+.niveau.premier h4{display:block}
+
+/* Encadré */
+.encadre{background:var(--indigo-pale); border-radius:var(--r-carte); padding:24px 26px; display:flex; flex-direction:column; gap:8px}
+.encadre .sur-titre{color:var(--comprendre)}
+.encadre h3{font-size:22px; line-height:27px; font-weight:700; letter-spacing:-.4px}
+.encadre p{color:var(--texte-fort); font-size:16px; line-height:25px}
+
+/* Liste numérotée */
+.numeros{list-style:none; margin:0; padding:0}
+.numeros > li{display:grid; grid-template-columns:30px 1fr auto; gap:14px; padding:16px 0; border-bottom:1px solid var(--filet); align-items:start}
+.numeros > li:last-child{border-bottom:0}
+.numeros > li > div{min-width:0}
+.pastille{width:30px; height:30px; border-radius:50%; background:var(--indigo); color:#fff; display:grid; place-items:center; font:700 14px/1 var(--corps)}
+.numeros h3{font-size:19px; line-height:24px}
+.numeros p{margin-top:4px; font-size:15px; line-height:23px}
+.numeros .simple{font-size:15px; line-height:23px; color:var(--texte-fort); padding-top:3px}
+.heures{font:700 20px/24px var(--titre); color:var(--encre); letter-spacing:-.3px; white-space:nowrap; font-variant-numeric:tabular-nums; padding-top:2px}
+.heures small{font:400 13px/18px var(--corps); color:var(--texte-2); margin-left:2px}
+.sous-liste{list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:4px}
+.sous-liste li{font-size:15px; line-height:22px; padding-left:16px; position:relative}
+.sous-liste li::before{content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700}
+
+/* Répartition des heures */
+.repartition{margin:4px 0 8px}
+.barre{display:flex; height:14px; border-radius:999px; overflow:hidden; gap:3px}
+.barre span{display:block; height:100%}
+.barre span:nth-child(odd){background:var(--indigo)}
+.barre span:nth-child(even){background:var(--indigo-clair)}
+.barre-legende{display:flex; justify-content:space-between; font-size:13px; line-height:18px; color:var(--texte-2); margin-top:8px; font-variant-numeric:tabular-nums}
+.total{display:flex; justify-content:space-between; align-items:baseline; padding:16px 0 0; border-top:1px solid var(--bordure); margin-top:4px}
+.total b{font:700 19px/24px var(--titre); color:var(--encre)}
+.total .heures{font-size:24px; line-height:28px}
+
+/* Lignes (livrables, enseignements) */
+.lignes{list-style:none; margin:0; padding:0}
+.lignes li{padding:16px 0; border-bottom:1px solid var(--filet); display:flex; flex-direction:column; gap:6px}
+.lignes li:last-child{border-bottom:0}
+.lignes .haut{display:flex; justify-content:space-between; gap:14px; align-items:flex-start}
+.lignes h3{font-size:18px; line-height:23px; min-width:0}
+.lignes p{font-size:15px; line-height:22px; color:var(--texte-2)}
+.lignes p b{color:var(--texte-fort); font-weight:600}
+
+/* Méthodes */
+.familles{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.famille{background:var(--fond); border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.famille h3{font-size:19px; line-height:24px}
+.famille h4{font:600 13px/18px var(--corps); color:var(--indigo); margin-top:4px}
+.famille p{font-size:15px; line-height:23px; color:var(--texte-fort)}
+.puces{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px}
+.puces li{font-size:15px; line-height:22px; padding-left:16px; position:relative; color:var(--texte-fort)}
+.puces li::before{content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700}
+
+/* À faire */
+.a-faire{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px}
+.a-faire li{display:grid; grid-template-columns:20px 1fr; gap:12px; font-size:15px; line-height:23px; color:var(--texte-fort)}
+.a-faire li::before{content:""; width:16px; height:16px; margin-top:3px; border:1.5px solid var(--indigo); border-radius:5px}
+
+/* Encadré attention */
+.attention{background:var(--lavande); border-radius:var(--r-petit); padding:16px 20px; font-size:15px; line-height:23px; color:var(--texte-fort); margin-top:18px}
+.attention b{font-weight:600}
+
+/* Encadrement */
+.trois{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+.trois > div{border:1px solid var(--bordure); border-radius:var(--r-petit); padding:18px 20px; display:flex; flex-direction:column; gap:6px}
+.trois .freq{font:600 13px/18px var(--corps); color:var(--indigo)}
+.trois h3{font-size:18px; line-height:23px}
+.trois p{font-size:14px; line-height:21px; color:var(--texte-fort)}
+
+/* Références */
+.biblio h3{font-size:18px; line-height:23px; margin:6px 0 8px}
+.biblio ul{list-style:none; margin:0 0 20px; padding:0}
+.biblio li{font-size:14px; line-height:21px; padding:9px 0; border-bottom:1px solid var(--filet); overflow-wrap:anywhere}
+.biblio li:last-child{border-bottom:0}
+.biblio a{font-weight:500}
+
+/* Signature et pied */
+.signature{margin-top:40px; padding-top:28px; border-top:1px solid var(--bordure); display:flex; flex-direction:column; gap:2px}
+.signature b{font:700 18px/24px var(--titre); color:var(--encre); letter-spacing:-.3px}
+.signature span{font-size:14px; line-height:20px; color:var(--texte-2)}
+.pied{max-width:780px; margin:22px auto 0; text-align:center; font-size:12px; line-height:19px; color:var(--texte-3)}
+.pied a{color:var(--texte-3); text-decoration:underline; font-weight:400}
+
+@media (max-width:700px){
+  .niveau{grid-template-columns:1fr; gap:12px}
+  .familles,.trois{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .page{padding:26px 22px 30px; border-radius:22px}
+  h1{font-size:32px; line-height:36px}
+  h2{font-size:23px; line-height:27px}
+  .mention{text-align:left}
+  .infos{grid-template-columns:1fr}
+  .infos dt{border-bottom:0; padding-bottom:0}
+  .infos dd{padding-top:2px}
+  .numeros > li{grid-template-columns:30px 1fr}
+  .numeros .heures{grid-column:2}
+  .encadre,.famille{padding:20px}
+}
+@media print{
+  body{background:#fff; padding:0}
+  .page{border:0; padding:0; max-width:none}
+  .niveau,.famille,.trois > div,.numeros > li,.lignes li,.encadre{break-inside:avoid}
+  .pied{display:none}
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+  <header class="entete">
+    <div class="logo" aria-label="Communiquer en santé mentale">
+      <div class="logo-carre" aria-hidden="true">❝</div>
+      <div class="logo-texte"><b>Communiquer</b><span>en santé mentale</span></div>
+    </div>
+    <div class="mention"><b>Stage de M1 · Tutorat</b><span>novembre 2026</span></div>
+  </header>
+
+  <div class="ouverture">
+    <p class="sur-titre">Stage de Manon Couvidat · Triptyque recherche &amp; conseil</p>
+    <h1>Fiche de mission</h1>
+    <p class="chapo">Le stage consiste à concevoir et tester un parcours d’apprentissage progressif en trois niveaux, dont les règles de conception pourront être réutilisées pour les trois parcours thématiques.</p>
+  </div>
+
+  <section aria-labelledby="t-infos">
+    <div class="section-tete"><h2 id="t-infos">Informations générales</h2></div>
+    <dl class="infos">
+      <dt>Stagiaire</dt><dd>Manon Couvidat</dd>
+      <dt>Formation</dt><dd>Master 1 Psychologie cognitive fondamentale et appliquée, Université Paris Cité</dd>
+      <dt>Structure d’accueil</dt><dd>Triptyque recherche &amp; conseil</dd>
+      <dt>Tuteur</dt><dd>Mickaël Worms-Ehrminger, enseignant et chercheur en santé publique (Inserm UMR&nbsp;1153 – UR&nbsp;4139 / Fondation Académie de médecine), consultant (Santé publique France, ARS Île-de-France), auteur, vulgarisateur</dd>
+      <dt>Durée</dt><dd class="grand">301&nbsp;heures</dd>
+      <dt>Dates et rythme</dt><dd>À fixer selon les plannings de la stagiaire et du tuteur</dd>
+      <dt>Parcours de travail</dt><dd><div class="domaines"><span class="tag tag-indigo">Méthodes innovantes d’apprentissage</span><span class="tag tag-indigo">UX</span><span class="tag tag-indigo">Recherche qualitative et appliquée</span><span class="tag tag-indigo">Numérique</span><span class="tag tag-indigo">Éthique</span></div></dd>
+    </dl>
+  </section>
+
+  <section aria-labelledby="t-contexte">
+    <div class="section-tete">
+      <h2 id="t-contexte">Contexte du projet</h2>
+      <p class="sous-titre">Le projet vise à proposer un des trois parcours d’apprentissage gradués&nbsp;: comprendre la santé publique, comprendre la santé mentale, comprendre la communication en santé. Chaque parcours est organisé en trois niveaux de progression.</p>
+    </div>
+    <div class="niveaux">
+      <div class="niveau">
+        <div class="niveau-nom"><span class="num">Niveau 1</span><b>Se repérer</b></div>
+        <div class="col"><h4>Santé publique</h4><p>Distinguer santé individuelle et populationnelle&nbsp;; reconnaître les déterminants de santé&nbsp;; comprendre prévention et promotion de la santé.</p></div>
+        <div class="col"><h4>Santé mentale</h4><p>Distinguer santé mentale, souffrance psychique et troubles&nbsp;; comprendre leur diversité et leurs déterminants.</p></div>
+        <div class="col"><h4>Communication en santé</h4><p>Identifier les objectifs, les publics et les acteurs&nbsp;; distinguer informer, sensibiliser et accompagner un changement.</p></div>
+      </div>
+      <div class="niveau">
+        <div class="niveau-nom"><span class="num">Niveau 2</span><b>Analyser</b></div>
+        <div class="col"><h4>Santé publique</h4><p>Interpréter un indicateur&nbsp;; distinguer association et causalité&nbsp;; analyser les inégalités sociales de santé et les limites d’une intervention.</p></div>
+        <div class="col"><h4>Santé mentale</h4><p>Examiner un discours ou un chiffre&nbsp;; repérer les simplifications, la médicalisation excessive et les mécanismes de stigmatisation.</p></div>
+        <div class="col"><h4>Communication en santé</h4><p>Analyser le cadrage d’un message, ses présupposés, son accessibilité et ses effets possibles&nbsp;; examiner la place donnée aux personnes concernées.</p></div>
+      </div>
+      <div class="niveau">
+        <div class="niveau-nom"><span class="num">Niveau 3</span><b>Mobiliser</b></div>
+        <div class="col"><h4>Santé publique</h4><p>Analyser un problème de santé publique et proposer une réponse argumentée, en explicitant ses limites.</p></div>
+        <div class="col"><h4>Santé mentale</h4><p>Analyser une situation et proposer des pistes de prévention ou de promotion de la santé mentale adaptées au contexte.</p></div>
+        <div class="col"><h4>Communication en santé</h4><p>Concevoir une action de communication&nbsp;: objectifs, publics, messages, supports, participation et évaluation.</p></div>
+      </div>
+    </div>
+    <p class="note apres">Ce référentiel est une base de travail. Il pourra être précisé pendant le stage.</p>
+  </section>
+
+  <section aria-labelledby="t-objectifs">
+    <div class="section-tete"><h2 id="t-objectifs">Objectifs</h2></div>
+    <div class="encadre">
+      <p class="sur-titre">Objectif général</p>
+      <p>Concevoir, prototyper et tester un parcours progressif en trois niveaux dans un parcours thématique, puis en tirer des règles de conception applicables aux deux autres.</p>
+    </div>
+    <h3 class="apres" style="margin-bottom:4px">Objectifs spécifiques</h3>
+    <ol class="numeros">
+      <li><span class="pastille">1</span><p class="simple">Identifier les besoins, les connaissances initiales et les difficultés anticipées des futurs apprenants.</p></li>
+      <li><span class="pastille">2</span><p class="simple">Choisir une méthode et un type de prototypage adaptés au projet, à partir d’une revue ciblée.</p></li>
+      <li><span class="pastille">3</span><p class="simple">Structurer les trois niveaux&nbsp;: prérequis, ordre des notions, activités, critères de réussite, possibilités de révision.</p></li>
+      <li><span class="pastille">4</span><p class="simple">Concevoir un module pilote et son environnement&nbsp;: entrée dans le parcours, choix du niveau, navigation, activités, feedbacks, visualisation de la progression.</p></li>
+      <li><span class="pastille">5</span><p class="simple">Évaluer l’utilisabilité et la cohérence du module pilote, puis le réviser.</p></li>
+      <li><span class="pastille">6</span><p class="simple">Vérifier que le gabarit s’applique à un module de chacun des deux autres parcours.</p></li>
+      <li><span class="pastille">7</span><p class="simple">Formaliser des règles de conception réutilisables et leurs limites.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="t-deroule">
+    <div class="section-tete">
+      <h2 id="t-deroule">Déroulé de la mission</h2>
+      <p class="sous-titre">Six phases pour un total de 301&nbsp;heures. Les points d’encadrement sont inclus dans chaque phase.</p>
+    </div>
+    <div class="repartition" role="img" aria-label="Répartition des 301 heures entre les six phases : 35, 45, 50, 65, 65 et 41 heures">
+      <div class="barre">
+        <span style="flex:35"></span><span style="flex:45"></span><span style="flex:50"></span><span style="flex:65"></span><span style="flex:65"></span><span style="flex:41"></span>
+      </div>
+      <div class="barre-legende"><span>Phase 1</span><span>Phase 6</span></div>
+    </div>
+    <ol class="numeros">
+      <li><span class="pastille">1</span><div><h3>Cadrage et revue ciblée</h3><p>Préciser les publics, les objectifs et les contraintes. Mener la revue de littérature sur les méthodes de conception et de prototypage. Choisir le parcours de travail et le type de prototype.</p></div><span class="heures">35<small>h</small></span></li>
+      <li><span class="pastille">2</span><div><h3>Recherche utilisateur</h3><p>Préparer et mener les entretiens. Analyser les besoins, les connaissances initiales et les difficultés anticipées.</p></div><span class="heures">45<small>h</small></span></li>
+      <li><span class="pastille">3</span><div><h3>Architecture des parcours</h3><p>Structurer avec le tuteur les trois niveaux, les prérequis, les activités et les modalités de progression.</p></div><span class="heures">50<small>h</small></span></li>
+      <li><span class="pastille">4</span><div><h3>Prototypage</h3><p>Concevoir le module pilote et son environnement.</p></div><span class="heures">65<small>h</small></span></li>
+      <li><span class="pastille">5</span><div><h3>Tests et améliorations</h3><p>Tester le module pilote avec des utilisateurs et par inspection. Réviser le prototype. Vérifier par inspection l’application du gabarit à un module de chacun des deux autres parcours.</p></div><span class="heures">65<small>h</small></span></li>
+      <li><span class="pastille">6</span><div><h3>Synthèse et transmission</h3><p>Formaliser les règles de conception, les recommandations et les limites.</p></div><span class="heures">41<small>h</small></span></li>
+    </ol>
+    <div class="total"><b>Total</b><span class="heures">301<small>h</small></span></div>
+  </section>
+
+  <section aria-labelledby="t-livrables">
+    <div class="section-tete">
+      <h2 id="t-livrables">Livrables</h2>
+      <p class="sous-titre">Les livrables principaux sont ceux qui permettent de produire d’autres modules, plus que le contenu du module pilote lui-même.</p>
+    </div>
+    <ul class="lignes">
+      <li><div class="haut"><h3>Note de cadrage et synthèse de la revue, avec le choix argumenté du type de prototype</h3><span class="tag">Phase 1</span></div><p><b>Après le stage&nbsp;:</b> justifier les choix de conception</p></li>
+      <li><div class="haut"><h3>Synthèse des besoins et des principaux obstacles, appuyée sur les entretiens</h3><span class="tag">Phase 2</span></div><p><b>Après le stage&nbsp;:</b> point de départ pour les autres parcours</p></li>
+      <li><div class="haut"><h3>Référentiel des trois niveaux&nbsp;: verbes d’action et critères de réussite</h3><span class="tag">Phase 3</span></div><p><b>Après le stage&nbsp;:</b> commun aux trois parcours</p></li>
+      <li><div class="haut"><h3>Carte des parcours et gabarit de module</h3><span class="tag">Phase 3</span></div><p><b>Après le stage&nbsp;:</b> modèle pour tous les modules</p></li>
+      <li><div class="haut"><h3>Prototype du module pilote et de son environnement</h3><span class="tag">Phases 4 et 5</span></div><p><b>Après le stage&nbsp;:</b> exemple de référence</p></li>
+      <li><div class="haut"><h3>Protocole de test réutilisable&nbsp;: tâches types, grille d’observation, mesures</h3><span class="tag">Phase 5</span></div><p><b>Après le stage&nbsp;:</b> tester les modules suivants</p></li>
+      <li><div class="haut"><h3>Résultats des tests et problèmes hiérarchisés</h3><span class="tag">Phase 5</span></div><p><b>Après le stage&nbsp;:</b> suivi des révisions</p></li>
+      <li><div class="haut"><h3>Règles de conception par niveau, recommandations et limites</h3><span class="tag">Phase 6</span></div><p><b>Après le stage&nbsp;:</b> guide de production des parcours</p></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-revue">
+    <div class="section-tete">
+      <h2 id="t-revue">Questions de la revue initiale</h2>
+      <p class="sous-titre">La revue doit aboutir à une décision sur la méthode de conception et le type de prototype. Elle s’organise autour de quatre questions.</p>
+    </div>
+    <ol class="numeros">
+      <li><span class="pastille">1</span><div><h3>Quelles méthodes de conception, y compris innovantes, conviennent à un projet de cette taille&nbsp;?</h3><p>Par exemple la recherche orientée par la conception (<i>design-based research</i>) ou les cycles itératifs courts.</p></div></li>
+      <li><span class="pastille">2</span><div><h3>Quel niveau de fidélité à quelle étape&nbsp;?</h3><p>Maquette papier ou filaire pour tester l’architecture, prototype interactif pour tester les activités et les feedbacks.</p></div></li>
+      <li><span class="pastille">3</span><div><h3>Selon quels critères choisir l’outil&nbsp;?</h3>
+        <ul class="sous-liste">
+          <li>Facilité de maintenance par le tuteur après le stage</li>
+          <li>Accessibilité (le RGAA est la référence française)</li>
+          <li>Coût</li>
+          <li>Possibilité de réutiliser le gabarit pour les autres parcours</li>
+        </ul></div></li>
+      <li><span class="pastille">4</span><div><h3>Quels principes issus de la psychologie cognitive appliquer à la progression&nbsp;?</h3><p>Charge cognitive, renversement de l’expertise, estompage progressif du guidage, pratique de récupération et espacement.</p></div></li>
+    </ol>
+    <p class="attention"><b>Le critère de maintenance est déterminant.</b> Un prototype que seule la stagiaire sait modifier ne servira pas aux autres parcours.</p>
+  </section>
+
+  <section aria-labelledby="t-methode">
+    <div class="section-tete">
+      <h2 id="t-methode">Cadre méthodologique</h2>
+      <p class="sous-titre">Les tests portent sur l’utilisabilité et la cohérence du parcours. Ils ne visent pas à démontrer l’efficacité pédagogique, que de petits échantillons ne permettent pas d’établir. Le rapport le précisera.</p>
+    </div>
+    <div class="familles">
+      <div class="famille">
+        <h3>Avec utilisateurs</h3>
+        <h4>Méthodes</h4>
+        <ul class="puces">
+          <li>Réalisation de tâches&nbsp;: choisir un niveau, trouver une ressource, comprendre une consigne, réaliser une activité, interpréter un feedback</li>
+          <li>Verbalisation à voix haute</li>
+          <li>Taux de réussite</li>
+          <li>Échelle d’utilisabilité (SUS)</li>
+          <li>Échelle d’effort mental perçu</li>
+        </ul>
+        <h4>Ce qui est évalué</h4>
+        <p>Utilisabilité, compréhension, charge perçue</p>
+      </div>
+      <div class="famille">
+        <h3>Sans utilisateurs</h3>
+        <h4>Méthodes</h4>
+        <ul class="puces">
+          <li>Inspection de l’alignement entre objectifs, activités et évaluation (alignement constructif)</li>
+          <li>Évaluation heuristique</li>
+          <li>Parcours cognitif</li>
+        </ul>
+        <h4>Ce qui est évalué</h4>
+        <p>Cohérence pédagogique, ergonomie, transférabilité du gabarit</p>
+      </div>
+    </div>
+    <p class="note apres">Les méthodes sans utilisateurs servent aussi à vérifier que le gabarit s’applique aux deux autres parcours, sans tests supplémentaires.</p>
+  </section>
+
+  <section aria-labelledby="t-ethique">
+    <div class="section-tete">
+      <h2 id="t-ethique">Éthique et données</h2>
+      <p class="sous-titre">Le cadre éthique des entretiens et des tests est établi par la stagiaire avec le tuteur pendant la phase de cadrage. Cette démarche fait partie des apprentissages du stage.</p>
+    </div>
+    <ul class="a-faire">
+      <li>Rédiger une note d’information pour les participants</li>
+      <li>Rédiger un formulaire de consentement</li>
+      <li>Définir le mode de stockage, la durée de conservation et l’anonymisation des enregistrements, conformément au RGPD</li>
+      <li>Si le parcours santé mentale est retenu, prévoir des précautions pour les personnes concernées par un trouble psychique&nbsp;: contenus abordés, possibilité d’interrompre, ressources d’aide à indiquer</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-formation">
+    <div class="section-tete">
+      <h2 id="t-formation">Lien avec la formation</h2>
+      <p class="sous-titre">La mission mobilise directement les enseignements du M1.</p>
+    </div>
+    <ul class="lignes">
+      <li><div class="haut"><h3>Entretien&nbsp;; observation</h3><span class="tag">S1 · UE&nbsp;3</span></div><p>Explorer les besoins et les difficultés des futurs apprenants&nbsp;; observer l’utilisation du module.</p></li>
+      <li><div class="haut"><h3>Méthode expérimentale&nbsp;; analyse des données</h3><span class="tag">S1 · UE&nbsp;1 et 6</span></div><p>Construire le protocole de test et analyser les résultats, en distinguant exploration et démonstration d’efficacité.</p></li>
+      <li><div class="haut"><h3>Perception-action, expertise</h3><span class="tag">S1 · UE&nbsp;2</span></div><p>Repérage dans le parcours&nbsp;; différences de besoins entre novices et personnes familiarisées&nbsp;; renversement de l’expertise.</p></li>
+      <li><div class="haut"><h3>Langage, mémoire et fonctions exécutives</h3><span class="tag">S2 · UE&nbsp;1</span></div><p>Compréhension des consignes, mémorisation, exigences attentionnelles, reprise après interruption.</p></li>
+      <li><div class="haut"><h3>Questionnaire</h3><span class="tag">S2 · UE&nbsp;2</span></div><p>Choisir et utiliser des mesures de l’utilisabilité et de l’effort perçu.</p></li>
+      <li><div class="haut"><h3>Outils d’analyse de situations&nbsp;; projets tutorés d’analyse et d’innovation</h3><span class="tag">S1 · UE&nbsp;4</span></div><p>Traduire les problèmes observés en propositions de conception, puis les tester.</p></li>
+      <li><div class="haut"><h3>Atelier éthique</h3><span class="tag">S2 · UE&nbsp;3</span></div><p>Établir le cadre éthique et la protection des données des entretiens et des tests.</p></li>
+      <li><div class="haut"><h3>Communication orale 1 et 2</h3><span class="tag">S2 · UE&nbsp;3 et 4</span></div><p>Analyser le contexte professionnel du stage&nbsp;; rendre des notions accessibles en préservant leur précision.</p></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-encadrement">
+    <div class="section-tete">
+      <h2 id="t-encadrement">Encadrement</h2>
+      <p class="sous-titre">Le suivi est hebdomadaire, avec un bilan toutes les deux semaines.</p>
+    </div>
+    <div class="trois">
+      <div><span class="freq">Chaque semaine</span><h3>Suivi hebdomadaire</h3><p>Dans un carnet partagé&nbsp;: jours réalisés, missions et avancement, validations et demandes, remarques, planning prévisionnel.</p></div>
+      <div><span class="freq">Toutes les deux semaines</span><h3>Bilan de quinzaine</h3><p>Point sur l’avancement, les difficultés et les ajustements.</p></div>
+      <div><span class="freq">À chaque fin de phase</span><h3>Validation</h3><p>Chaque livrable est relu et validé par le tuteur avant le passage à la phase suivante.</p></div>
+    </div>
+  </section>
+
+  <section class="biblio" aria-labelledby="t-refs">
+    <div class="section-tete">
+      <h2 id="t-refs">Références de départ</h2>
+      <p class="sous-titre">Ces références servent de point d’entrée pour la revue. Elles datent pour la plupart de 2017 ou après&nbsp;; les travaux fondateurs sont accessibles par les synthèses citées. La stagiaire complétera la liste.</p>
+    </div>
+    <h3>Concevoir un parcours d’apprentissage</h3>
+    <ul>
+      <li>Ardouin, T. (2013). <i>Ingénierie de formation</i> (4e éd.). Dunod.</li>
+      <li>Cela-Ranilla, J., Esteve-Mon, F. M. et Sánchez-Caballé, A. (2025). Design-based research in higher education: A systematic literature review between 2019 and 2023. <i>Australasian Journal of Educational Technology</i>, 41(4), 67-83. <a href="https://doi.org/10.14742/ajet.10380">https://doi.org/10.14742/ajet.10380</a></li>
+      <li>Dirksen, J. (2016). <i>Design for How People Learn</i> (2e éd.). New Riders.</li>
+      <li>Floor, N. (2023). <i>This is Learning Experience Design</i>. New Riders.</li>
+      <li>Tawfik, A. A., Schmidt, M., Payne, L. et Huang, R. (2024). Advancing understanding of learning experience design: Refining and clarifying definitions using an eDelphi study approach. <i>Educational Technology Research and Development</i>, 72, 1539-1561. <a href="https://doi.org/10.1007/s11423-024-10355-z">https://doi.org/10.1007/s11423-024-10355-z</a></li>
+      <li>van Merriënboer, J. J. G., Kirschner, P. A. et Frèrejean, J. (2025). <i>Ten Steps to Complex Learning: A Systematic Approach to Four-Component Instructional Design</i> (4e éd.). Routledge.</li>
+    </ul>
+    <h3>Principes d’apprentissage</h3>
+    <ul>
+      <li>Chen, O., Kalyuga, S. et Sweller, J. (2017). The expertise reversal effect is a variant of the more general element interactivity effect. <i>Educational Psychology Review</i>, 29, 393-405. <a href="https://doi.org/10.1007/s10648-016-9359-1">https://doi.org/10.1007/s10648-016-9359-1</a></li>
+      <li>Clark, R. C. et Mayer, R. E. (2024). <i>E-Learning and the Science of Instruction: Proven Guidelines for Consumers and Designers of Multimedia Learning</i> (5e éd.). Wiley.</li>
+      <li>Martinengo, L. et al. (2024). Spaced digital education for health professionals: Systematic review and meta-analysis. <i>Journal of Medical Internet Research</i>, 26, e57760. <a href="https://doi.org/10.2196/57760">https://doi.org/10.2196/57760</a></li>
+      <li>Mokhtari, S., Mokhtari, A., Shariat, S. V., Nazeri Astaneh, A. et Shalbafan, M. (2026). Innovative technologies in psychiatry education: A systematic review. <i>BMC Medical Education</i>, 26, 1254. <a href="https://doi.org/10.1186/s12909-026-09573-1">https://doi.org/10.1186/s12909-026-09573-1</a></li>
+      <li>Sweller, J., van Merriënboer, J. J. G. et Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. <i>Educational Psychology Review</i>, 31(2), 261-292. <a href="https://doi.org/10.1007/s10648-019-09465-5">https://doi.org/10.1007/s10648-019-09465-5</a></li>
+      <li>Thomann, H. et Deutscher, V. (2025). Scaffolding through prompts in digital learning: A systematic review and meta-analysis of effectiveness on learning achievement. <i>Educational Research Review</i>, 47, 100686. <a href="https://doi.org/10.1016/j.edurev.2025.100686">https://doi.org/10.1016/j.edurev.2025.100686</a></li>
+      <li>Trumble, E., Lodge, J., Mandrusiak, A. et Forbes, R. (2024). Systematic review of distributed practice and retrieval practice in health professions education. <i>Advances in Health Sciences Education</i>, 29, 689-714. <a href="https://doi.org/10.1007/s10459-023-10274-3">https://doi.org/10.1007/s10459-023-10274-3</a></li>
+      <li>van Gaalen, A. E. J., Brouwer, J., Schönrock-Adema, J., Bouwkamp-Timmer, T., Jaarsma, A. D. C. et Georgiadis, J. R. (2021). Gamification of health professions education: A systematic review. <i>Advances in Health Sciences Education</i>, 26, 683-711. <a href="https://doi.org/10.1007/s10459-020-10000-3">https://doi.org/10.1007/s10459-020-10000-3</a></li>
+      <li>Wu, F. et al. (2023). Application of case-based learning in psychology teaching: A meta-analysis. <i>BMC Medical Education</i>, 23, 609. <a href="https://doi.org/10.1186/s12909-023-04525-5">https://doi.org/10.1186/s12909-023-04525-5</a></li>
+      <li>Yang, C., Luo, L., Vadillo, M. A., Yu, R. et Shanks, D. R. (2021). Testing (quizzing) boosts classroom learning: A systematic and meta-analytic review. <i>Psychological Bulletin</i>, 147(4), 399-435. <a href="https://doi.org/10.1037/bul0000309">https://doi.org/10.1037/bul0000309</a></li>
+    </ul>
+    <h3>Interface, utilisabilité et accessibilité</h3>
+    <ul>
+      <li>Darejeh, A., Marcus, N., Mohammadi, G. et Sweller, J. (2026). Cognitive load measurement methods for usability testing: A critical analysis and framework for interface evaluation. <i>Human Factors</i>, 68(7), 859-912. <a href="https://doi.org/10.1177/00187208261427867">https://doi.org/10.1177/00187208261427867</a></li>
+      <li>Direction interministérielle du numérique. <i>Référentiel général d’amélioration de l’accessibilité (RGAA)</i>, version 4.1.2. <a href="https://accessibilite.numerique.gouv.fr/">https://accessibilite.numerique.gouv.fr/</a></li>
+      <li>Lewis, J. R. (2018). The System Usability Scale: Past, present, and future. <i>International Journal of Human-Computer Interaction</i>, 34(7), 577-590. <a href="https://doi.org/10.1080/10447318.2018.1455307">https://doi.org/10.1080/10447318.2018.1455307</a></li>
+      <li>Lu, J., Schmidt, M., Lee, M. et Huang, R. (2022). Usability research in educational technology: A state-of-the-art systematic review. <i>Educational Technology Research and Development</i>, 70(6), 1951-1992. <a href="https://doi.org/10.1007/s11423-022-10152-6">https://doi.org/10.1007/s11423-022-10152-6</a></li>
+      <li>Peters, D. (2014). <i>Interface Design for Learning: Design Strategies for Learning Experiences</i>. New Riders.</li>
+      <li>Tawfik, A. A., Payne, L., Ketter, H. et James, J. (2025). What instruments do researchers use to evaluate LXD? A systematic review study. <i>Technology, Knowledge and Learning</i>, 30, 47-62. <a href="https://doi.org/10.1007/s10758-024-09763-0">https://doi.org/10.1007/s10758-024-09763-0</a></li>
+      <li>Yablonski, J. (2024). <i>Laws of UX</i> (2e éd.). O’Reilly.</li>
+    </ul>
+    <h3>Perspectives de recherche</h3>
+    <ul>
+      <li>Potter, A. et al. (2025). Identifying research priorities in digital education for health care: Umbrella review and modified Delphi method study. <i>Journal of Medical Internet Research</i>, 27, e66157. <a href="https://doi.org/10.2196/66157">https://doi.org/10.2196/66157</a></li>
+    </ul>
+  </section>
+
+  <div class="signature">
+    <b>Mickaël Worms-Ehrminger</b>
+    <span>Docteur en santé publique · Tuteur de stage</span>
+  </div>
+</main>
+
+<footer class="pied">
+  <a href="espace.html">Espace du stage</a> ·   <a href="https://communication-santementale.fr/">communication-santementale.fr</a> · <a href="https://communication-santementale.fr/contact/">Contact</a><br>
+  © 2026 Mickaël Worms-Ehrminger · Communiquer en santé mentale
+</footer>
+</body>
+</html>

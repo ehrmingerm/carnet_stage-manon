@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Document de départ du stage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Charte « Communiquer en santé mentale » : colonne de lecture sur surface blanche arrondie, fond blanc cassé, accent indigo unique. Mode clair imposé par la charte. */
+:root{
+  color-scheme: light;
+  --indigo:#4338F2; --encre:#0E0F12; --texte-fort:#23252C; --texte:#3B3E48;
+  --texte-2:#5B5F6A; --texte-3:#6B6F7A; --bordure:#E6E6EA; --filet:#EEEEF2;
+  --fond:#F7F7F5; --surface:#FFFFFF; --lavande:#F1F0F8; --indigo-pale:#ECEBFF;
+  --comprendre:#2A1FB8;
+  --livre-bg:#EFEBE3; --livre:#5A4526;
+  --etude-bg:#ECEBFF; --etude:#2A1FB8;
+  --rapport-bg:#E4EEF7; --rapport:#1D4F7A;
+  --titre:'Bricolage Grotesque',Arial,Helvetica,sans-serif;
+  --corps:'Instrument Sans',Arial,Helvetica,sans-serif;
+  --r-page:28px; --r-carte:22px; --r-petit:18px; --r-tag:8px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--fond); color:var(--texte);
+  font:400 16px/1.6 var(--corps);
+  padding-block:32px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing:antialiased;
+}
+.page{
+  max-width:760px; margin:0 auto; background:var(--surface);
+  border:1px solid var(--bordure); border-radius:var(--r-page);
+  padding:36px 44px 40px;
+}
+h1,h2,h3,h4{font-family:var(--titre); color:var(--encre); margin:0; text-wrap:balance}
+h1{font-size:40px; line-height:43px; font-weight:700; letter-spacing:-1.4px}
+h2{font-size:26px; line-height:30px; font-weight:700; letter-spacing:-.6px}
+h3{font-size:20px; line-height:25px; font-weight:600; letter-spacing:-.3px}
+p{margin:0}
+a{color:var(--indigo); font-weight:600; text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--indigo); outline-offset:2px; border-radius:4px}
+
+/* En-tête */
+.entete{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid var(--bordure)}
+.logo{display:flex; align-items:center; gap:12px}
+.logo-carre{width:36px; height:36px; border-radius:10px; background:var(--indigo); color:#fff; display:grid; place-items:center; font:700 20px/1 var(--titre); padding-top:6px}
+.logo-texte{display:flex; flex-direction:column; line-height:1.1}
+.logo-texte b{font:700 17px/1.1 var(--titre); color:var(--encre); letter-spacing:-.3px}
+.logo-texte span{font:400 14px/1.2 var(--corps); color:var(--texte-2)}
+.mention{text-align:right; font-size:13px; line-height:18px}
+.mention b{display:block; font-weight:600; color:var(--encre)}
+.mention span{color:var(--texte-2)}
+
+/* Ouverture */
+.ouverture{padding:32px 0 8px; display:flex; flex-direction:column; gap:12px}
+.sur-titre{font:600 13px/18px var(--corps); color:var(--indigo)}
+.chapo{font-size:17px; line-height:27px; color:var(--texte); max-width:62ch}
+.meta{font-size:14px; line-height:20px; color:var(--texte-2)}
+
+/* Sections */
+section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
+.section-tete{display:flex; flex-direction:column; gap:6px; margin-bottom:22px}
+.sous-titre{font-size:15px; line-height:22px; color:var(--texte-2); max-width:62ch}
+.texte{display:flex; flex-direction:column; gap:14px; max-width:64ch}
+
+/* Liste numérotée */
+.numeros{list-style:none; margin:0; padding:0}
+.numeros > li{display:grid; grid-template-columns:30px 1fr; gap:14px; padding:16px 0; border-bottom:1px solid var(--filet)}
+.numeros > li:last-child{border-bottom:0}
+.pastille{width:30px; height:30px; border-radius:50%; background:var(--indigo); color:#fff; display:grid; place-items:center; font:700 14px/1 var(--corps)}
+.numeros h3{font-size:19px; line-height:24px}
+.numeros p{margin-top:4px; font-size:15px; line-height:23px}
+.numeros > li > div{min-width:0}
+
+/* Encadré */
+.encadre{background:var(--indigo-pale); border-radius:var(--r-carte); padding:24px 26px; display:flex; flex-direction:column; gap:8px}
+.encadre .sur-titre{color:var(--comprendre)}
+.encadre h3{font-size:22px; line-height:27px; font-weight:700; letter-spacing:-.4px}
+.encadre p{color:var(--texte-fort); font-size:15px; line-height:23px}
+
+/* Étiquettes */
+.tag{display:inline-block; font:700 13px/18px var(--corps); padding:3px 9px; border-radius:var(--r-tag); white-space:nowrap}
+.tag-livre{background:var(--livre-bg); color:var(--livre)}
+.tag-etude{background:var(--etude-bg); color:var(--etude)}
+.tag-rapport{background:var(--rapport-bg); color:var(--rapport)}
+.tag-neutre{background:var(--lavande); color:var(--texte)}
+
+/* Fiches d'ouvrage */
+.ouvrages{list-style:none; margin:0; padding:0}
+.ouvrage{padding:22px 0; border-bottom:1px solid var(--filet); display:flex; flex-direction:column; gap:12px}
+.ouvrage:first-child{padding-top:4px}
+.ouvrage:last-child{border-bottom:0}
+.ouvrage-tete{display:flex; flex-direction:column; gap:6px}
+.ouvrage-tete .ligne{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.source{font-size:14px; line-height:20px; color:var(--texte-2)}
+.lectures{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.lectures > div{min-width:0}
+.lectures h4{font:600 13px/18px var(--corps); color:var(--texte-2); margin-bottom:6px}
+.lectures .prio h4{color:var(--indigo)}
+.chap{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.chap li{font-size:15px; line-height:22px; padding-left:16px; position:relative}
+.chap li::before{content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700}
+.chap .n{font-weight:600; color:var(--texte-fort); font-variant-numeric:tabular-nums}
+.prio .chap li{color:var(--texte-fort)}
+.ensuite .chap li{color:var(--texte-2)}
+.ensuite .chap li::before{color:var(--texte-3)}
+.note{font-size:14px; line-height:21px; color:var(--texte-2)}
+.note b{color:var(--texte-fort); font-weight:600}
+
+/* Questions de la revue */
+.questions{list-style:none; margin:0; padding:0}
+.questions > li{display:grid; grid-template-columns:30px 1fr; gap:14px; padding:18px 0; border-bottom:1px solid var(--filet)}
+.questions > li:last-child{border-bottom:0}
+.questions > li > div{min-width:0; display:flex; flex-direction:column; gap:8px}
+.questions .pastille.neutre{background:var(--lavande); color:var(--texte)}
+.refs-courtes{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:15px; line-height:22px; color:var(--texte-fort)}
+.attention{background:var(--lavande); border-radius:12px; padding:10px 14px; font-size:14px; line-height:21px; color:var(--texte-fort)}
+.attention b{font-weight:600}
+
+/* À compléter */
+.surveiller{background:var(--fond); border-radius:20px; padding:24px 26px; display:flex; flex-direction:column; gap:14px}
+.surveiller h3{font-size:19px; line-height:24px}
+.surveiller ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px}
+.surveiller li{padding-left:18px; position:relative; font-size:15px; line-height:23px}
+.surveiller li::before{content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700}
+.surveiller li b{color:var(--encre); font-weight:600}
+.termes{color:var(--texte-2)}
+
+/* Références */
+.biblio h3{font-size:19px; line-height:24px; margin:4px 0 10px}
+.biblio ul{list-style:none; margin:0 0 22px; padding:0}
+.biblio li{font-size:14px; line-height:21px; padding:9px 0; border-bottom:1px solid var(--filet); overflow-wrap:anywhere}
+.biblio li:last-child{border-bottom:0}
+.biblio a{font-weight:500}
+
+/* Signature et pied */
+.signature{margin-top:40px; padding-top:28px; border-top:1px solid var(--bordure); display:flex; flex-direction:column; gap:2px}
+.signature b{font:700 18px/24px var(--titre); color:var(--encre); letter-spacing:-.3px}
+.signature span{font-size:14px; line-height:20px; color:var(--texte-2)}
+.pied{max-width:760px; margin:22px auto 0; text-align:center; font-size:12px; line-height:19px; color:var(--texte-3)}
+.pied a{color:var(--texte-3); text-decoration:underline; font-weight:400}
+
+@media (max-width:620px){
+  .page{padding:26px 22px 30px; border-radius:22px}
+  h1{font-size:32px; line-height:36px}
+  h2{font-size:23px; line-height:27px}
+  .lectures{grid-template-columns:1fr}
+  .mention{text-align:left}
+  .encadre,.surveiller{padding:20px}
+}
+@media print{
+  body{background:#fff; padding:0}
+  .page{border:0; padding:0; max-width:none}
+  section{break-inside:auto}
+  .ouvrage,.questions > li,.encadre,.surveiller{break-inside:avoid}
+  .pied{display:none}
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+  <header class="entete">
+    <div class="logo" aria-label="Communiquer en santé mentale">
+      <div class="logo-carre" aria-hidden="true">❝</div>
+      <div class="logo-texte"><b>Communiquer</b><span>en santé mentale</span></div>
+    </div>
+    <div class="mention"><b>Stage de M1 · Tutorat</b><span>novembre 2026</span></div>
+  </header>
+
+  <div class="ouverture">
+    <p class="sur-titre">Stage de Manon · Phase de cadrage et revue ciblée</p>
+    <h1>Document de départ</h1>
+    <p class="chapo">Ce document rassemble les lectures de départ pour la phase de cadrage et la revue ciblée (35&nbsp;h). Il indique quoi lire d’abord et, pour chaque ouvrage, quels chapitres lire en priorité.</p>
+    <p class="meta">Version du 4&nbsp;novembre 2026</p>
+  </div>
+
+  <section aria-labelledby="t-mode">
+    <div class="section-tete">
+      <h2 id="t-mode">Mode d’emploi</h2>
+      <p class="sous-titre">Vous n’avez pas à tout lire.</p>
+    </div>
+    <div class="texte">
+      <p>Les chapitres prioritaires répondent aux quatre questions de la revue. Les autres se consultent au moment où la phase concernée commence.</p>
+      <div class="encadre">
+        <p class="sur-titre">Pour chaque lecture</p>
+        <h3>Notez trois choses</h3>
+        <p>Ce que la source affirme, sur quelles données elle s’appuie, et ce que cela implique pour notre parcours. Distinguez ce qui est établi par des études de ce qui relève de l’expérience des auteurs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-ordre">
+    <div class="section-tete">
+      <h2 id="t-ordre">Ordre de lecture conseillé</h2>
+      <p class="sous-titre">Pour les deux premières semaines.</p>
+    </div>
+    <ol class="numeros">
+      <li><span class="pastille">1</span><div><h3>Floor (2023), chapitres 3 et 5</h3><p>Ce qu’est le design de l’expérience d’apprentissage, et les étapes d’un projet, y compris le prototypage.</p></div></li>
+      <li><span class="pastille">2</span><div><h3>Cela-Ranilla et al. (2025)</h3><p>La recherche orientée par la conception, pour situer notre démarche.</p></div></li>
+      <li><span class="pastille">3</span><div><h3>van Merriënboer et al. (2025), chapitres 2, 3 et 6</h3><p>Comment organiser une progression du simple au complexe.</p></div></li>
+      <li><span class="pastille">4</span><div><h3>Sweller et al. (2019) et Chen et al. (2017)</h3><p>La charge cognitive et le renversement de l’expertise.</p></div></li>
+      <li><span class="pastille">5</span><div><h3>Clark et Mayer (2024), chapitres 2 et 13</h3><p>Le traitement cognitif dans un cours en ligne, la segmentation et le pré-entraînement.</p></div></li>
+      <li><span class="pastille">6</span><div><h3>Lu et al. (2022)</h3><p>Les méthodes d’évaluation de l’utilisabilité et les erreurs fréquentes dans leur application.</p></div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="t-ouvrages">
+    <div class="section-tete">
+      <h2 id="t-ouvrages">Ouvrages : chapitres prioritaires</h2>
+      <p class="sous-titre">Dans l’ordre où ils servent au fil du stage. Les titres de chapitres sont dans la langue de l’ouvrage.</p>
+    </div>
+    <ul class="ouvrages">
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phase 1 · phase 2</span></div>
+          <h3>This is Learning Experience Design</h3>
+          <p class="source">Niels Floor · New Riders, 2023</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 3.</span> What is learning experience design?</li>
+            <li><span class="n">Ch. 5.</span> How to design a learning experience (étapes du projet, prototypage rapide, tests fréquents)</li>
+            <li><span class="n">Ch. 7.</span> Design tools (personas, carte d’empathie, carte d’expérience)</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 6.</span> The Learning Experience Canvas</li>
+            <li>Nine rules of learning experience design</li>
+            <li><span class="n">Ch. 8.</span> Case studies</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Utile pour</b> les questions 1 et 2 de la revue, et la préparation des entretiens.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phases 2 et 3</span></div>
+          <h3>Ingénierie de formation</h3>
+          <p class="source">Thierry Ardouin · Dunod, 2013 (4e éd.)</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 5.</span> Les besoins en formation</li>
+            <li><span class="n">Ch. 7.</span> Référentialisation et référentiels</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 2.</span> Déconstruire l’ingénierie pour la reconstruire</li>
+            <li><span class="n">Ch. 12 à 14.</span> L’évaluation</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Utile pour</b> l’analyse des besoins et le référentiel des trois niveaux.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phases 2 et 3</span></div>
+          <h3>Design for How People Learn</h3>
+          <p class="source">Julie Dirksen · New Riders, 2016 (2e éd.)</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 2.</span> Who are your learners?</li>
+            <li><span class="n">Ch. 3.</span> What’s the goal?</li>
+            <li><span class="n">Ch. 4.</span> How do we remember?</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 6.</span> Design for knowledge</li>
+            <li><span class="n">Ch. 7.</span> Design for skills</li>
+            <li><span class="n">Ch. 12.</span> Designing evaluation</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Utile pour</b> passer des besoins observés aux objectifs de chaque niveau.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phase 3</span></div>
+          <h3>Ten Steps to Complex Learning</h3>
+          <p class="source">Jeroen J. G. van Merriënboer, Paul A. Kirschner et Jimmy Frèrejean · Routledge, 2025 (4e éd.)</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 2.</span> Four blueprint components</li>
+            <li><span class="n">Ch. 3.</span> Ten steps</li>
+            <li><span class="n">Ch. 6.</span> Step 3: Sequence learning tasks</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 4.</span> Design learning tasks</li>
+            <li><span class="n">Ch. 5.</span> Design performance assessments</li>
+            <li><span class="n">Ch. 7.</span> Design supportive information</li>
+            <li><span class="n">Ch. 10.</span> Design procedural information</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Ouvrage dense.</b> Les chapitres 2 et 3 en donnent la logique d’ensemble. Le chapitre 6 concerne directement nos trois niveaux.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phase 4</span></div>
+          <h3>E-Learning and the Science of Instruction</h3>
+          <p class="source">Ruth Colvin Clark et Richard E. Mayer · Wiley, 2024 (5e éd.)</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 2.</span> Guiding the learner’s cognitive processing during learning</li>
+            <li><span class="n">Ch. 9.</span> Applying the coherence principle</li>
+            <li><span class="n">Ch. 13.</span> Applying the segmenting and pretraining principles</li>
+            <li><span class="n">Ch. 14.</span> Guidelines for e-learning navigation</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 4 à 8.</span> Les principes multimédias</li>
+            <li><span class="n">Ch. 10.</span> Engagement and generative learning</li>
+            <li><span class="n">Ch. 11.</span> Leveraging examples</li>
+            <li><span class="n">Ch. 12.</span> Practice</li>
+            <li><span class="n">Ch. 21.</span> Applying the multimedia guidelines</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Utile pour</b> la conception du module pilote.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phases 4 et 5</span></div>
+          <h3>Laws of UX</h3>
+          <p class="source">Jon Yablonski · O’Reilly, 2024 (2e éd.)</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 1.</span> Jakob’s Law</li>
+            <li><span class="n">Ch. 3.</span> Miller’s Law</li>
+            <li><span class="n">Ch. 4.</span> Hick’s Law</li>
+            <li><span class="n">Ch. 11.</span> Applying psychological principles in design</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 2, 5 à 10.</span> Les autres lois</li>
+            <li><span class="n">Ch. 12.</span> With power comes responsibility</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Utile pour</b> construire la grille d’inspection du prototype.</p>
+      </li>
+
+      <li class="ouvrage">
+        <div class="ouvrage-tete">
+          <div class="ligne"><span class="tag tag-livre">Livre</span><span class="tag tag-neutre">Phase 4</span></div>
+          <h3>Interface Design for Learning</h3>
+          <p class="source">Dorian Peters · New Riders, 2014</p>
+        </div>
+        <div class="lectures">
+          <div class="prio"><h4>À lire en priorité</h4><ul class="chap">
+            <li><span class="n">Ch. 2.</span> How we learn</li>
+            <li><span class="n">Ch. 4.</span> Basic principles A–Z</li>
+            <li><span class="n">Ch. 10.</span> Designing the space</li>
+          </ul></div>
+          <div class="ensuite"><h4>Ensuite, selon les besoins</h4><ul class="chap">
+            <li><span class="n">Ch. 7.</span> Learning is emotional</li>
+            <li><span class="n">Ch. 11.</span> The learning interface designer’s toolkit</li>
+          </ul></div>
+        </div>
+        <p class="note"><b>Ouvrage de 2014.</b> Ses principes généraux restent utiles, mais une partie des exemples a vieilli. Croisez-le avec Yablonski (2024).</p>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-articles">
+    <div class="section-tete">
+      <h2 id="t-articles">Articles selon les questions de la revue</h2>
+      <p class="sous-titre">La plupart évaluent l’efficacité pédagogique. Ils servent à justifier des choix de conception, pas de modèle pour nos tests, qui portent sur l’utilisabilité et la cohérence.</p>
+    </div>
+    <ol class="questions">
+      <li><span class="pastille">1</span><div>
+        <h3>Quelle méthode de conception&nbsp;?</h3>
+        <div class="refs-courtes"><span>Cela-Ranilla et al. (2025)</span><span>Tawfik et al. (2024)</span><span>van Gaalen et al. (2021)</span><span>Mokhtari et al. (2026)</span></div>
+        <p class="attention"><b>Point d’attention.</b> La ludification est rarement fondée sur une théorie (van Gaalen et al.). Mokhtari et al. ne retiennent que 9&nbsp;études.</p>
+      </div></li>
+      <li><span class="pastille">2</span><div>
+        <h3>Quel niveau de fidélité du prototype&nbsp;?</h3>
+        <div class="refs-courtes"><span>Aucun article dans le corpus</span></div>
+        <p class="attention"><b>Point d’attention.</b> Voir Floor (2023), chapitre 5, et les pistes de recherche plus bas.</p>
+      </div></li>
+      <li><span class="pastille">3</span><div>
+        <h3>Quel outil, selon quels critères&nbsp;?</h3>
+        <div class="refs-courtes"><span>RGAA 4.1.2</span></div>
+        <p class="attention"><b>Point d’attention.</b> Le critère de maintenance par le tuteur après le stage est déterminant.</p>
+      </div></li>
+      <li><span class="pastille">4</span><div>
+        <h3>Quels principes d’apprentissage&nbsp;?</h3>
+        <div class="refs-courtes"><span>Sweller et al. (2019)</span><span>Chen et al. (2017)</span><span>Yang et al. (2021)</span><span>Trumble et al. (2024)</span><span>Martinengo et al. (2024)</span><span>Thomann et Deutscher (2025)</span><span>Wu et al. (2023)</span></div>
+        <p class="attention"><b>Point d’attention.</b> Martinengo et al.&nbsp;: 19&nbsp;études sur 23 à risque de biais élevé ou incertain. Wu et al.&nbsp;: forte hétérogénéité. Thomann et Deutscher&nbsp;: effet réduit après correction du biais de publication.</p>
+      </div></li>
+      <li><span class="pastille neutre" aria-hidden="true">5</span><div>
+        <h3>Pour les tests (phase 5)</h3>
+        <div class="refs-courtes"><span>Lu et al. (2022)</span><span>Tawfik et al. (2025)</span><span>Lewis (2018)</span><span>Darejeh et al. (2026)</span></div>
+        <p class="attention"><b>Point d’attention.</b> Préférer des instruments validés aux questionnaires construits pour l’occasion (Tawfik et al., 2025).</p>
+      </div></li>
+      <li><span class="pastille neutre" aria-hidden="true">6</span><div>
+        <h3>Pour la synthèse (phase 6)</h3>
+        <div class="refs-courtes"><span>Potter et al. (2025)</span></div>
+        <p class="attention"><b>Point d’attention.</b> Priorités de recherche en formation numérique en santé, utiles pour situer les limites du travail.</p>
+      </div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="t-manques">
+    <div class="section-tete">
+      <h2 id="t-manques">Ce que le corpus ne couvre pas encore</h2>
+      <p class="sous-titre">À compléter pendant la revue. Les termes de recherche sont indicatifs.</p>
+    </div>
+    <div class="surveiller">
+      <h3>Pistes de recherche</h3>
+      <ul>
+        <li><b>Fidélité des prototypes.</b> Quand utiliser une maquette basse fidélité, filaire ou interactive. <span class="termes">Termes&nbsp;: prototype fidelity, low-fidelity vs high-fidelity prototyping, rapid prototyping instructional design. Bases&nbsp;: ACM Digital Library, ERIC.</span></li>
+        <li><b>Méthodes d’inspection appliquées à la formation en ligne.</b> Évaluation heuristique et parcours cognitif. <span class="termes">Termes&nbsp;: heuristic evaluation e-learning, cognitive walkthrough learning environment. Point de départ&nbsp;: les références citées par Lu et al. (2022).</span></li>
+        <li><b>Accessibilité au-delà du RGAA.</b> Les WCAG&nbsp;2.2, dont le RGAA découle, et l’accessibilité cognitive (consignes, lisibilité, langage clair). <span class="termes">Termes&nbsp;: cognitive accessibility, plain language, FALC.</span></li>
+        <li><b>Sources en français.</b> Travaux francophones sur la conception de formations en ligne et l’ergonomie des environnements d’apprentissage. <span class="termes">Bases&nbsp;: Cairn, HAL, Érudit.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="biblio" aria-labelledby="t-refs">
+    <div class="section-tete">
+      <h2 id="t-refs">Liste complète des références</h2>
+    </div>
+    <h3>Ouvrages</h3>
+    <ul>
+      <li>Ardouin, T. (2013). <i>Ingénierie de formation</i> (4e éd.). Dunod.</li>
+      <li>Clark, R. C. et Mayer, R. E. (2024). <i>E-Learning and the Science of Instruction: Proven Guidelines for Consumers and Designers of Multimedia Learning</i> (5e éd.). Wiley.</li>
+      <li>Dirksen, J. (2016). <i>Design for How People Learn</i> (2e éd.). New Riders.</li>
+      <li>Floor, N. (2023). <i>This is Learning Experience Design</i>. New Riders.</li>
+      <li>Peters, D. (2014). <i>Interface Design for Learning: Design Strategies for Learning Experiences</i>. New Riders.</li>
+      <li>van Merriënboer, J. J. G., Kirschner, P. A. et Frèrejean, J. (2025). <i>Ten Steps to Complex Learning: A Systematic Approach to Four-Component Instructional Design</i> (4e éd.). Routledge.</li>
+      <li>Yablonski, J. (2024). <i>Laws of UX</i> (2e éd.). O’Reilly.</li>
+    </ul>
+    <h3>Articles et référentiels</h3>
+    <ul>
+      <li>Cela-Ranilla, J., Esteve-Mon, F. M. et Sánchez-Caballé, A. (2025). Design-based research in higher education: A systematic literature review between 2019 and 2023. <i>Australasian Journal of Educational Technology</i>, 41(4), 67-83. <a href="https://doi.org/10.14742/ajet.10380">https://doi.org/10.14742/ajet.10380</a></li>
+      <li>Chen, O., Kalyuga, S. et Sweller, J. (2017). The expertise reversal effect is a variant of the more general element interactivity effect. <i>Educational Psychology Review</i>, 29, 393-405. <a href="https://doi.org/10.1007/s10648-016-9359-1">https://doi.org/10.1007/s10648-016-9359-1</a></li>
+      <li>Darejeh, A., Marcus, N., Mohammadi, G. et Sweller, J. (2026). Cognitive load measurement methods for usability testing: A critical analysis and framework for interface evaluation. <i>Human Factors</i>, 68(7), 859-912. <a href="https://doi.org/10.1177/00187208261427867">https://doi.org/10.1177/00187208261427867</a></li>
+      <li>Direction interministérielle du numérique. <i>Référentiel général d’amélioration de l’accessibilité (RGAA)</i>, version 4.1.2. <a href="https://accessibilite.numerique.gouv.fr/">https://accessibilite.numerique.gouv.fr/</a></li>
+      <li>Lewis, J. R. (2018). The System Usability Scale: Past, present, and future. <i>International Journal of Human-Computer Interaction</i>, 34(7), 577-590. <a href="https://doi.org/10.1080/10447318.2018.1455307">https://doi.org/10.1080/10447318.2018.1455307</a></li>
+      <li>Lu, J., Schmidt, M., Lee, M. et Huang, R. (2022). Usability research in educational technology: A state-of-the-art systematic review. <i>Educational Technology Research and Development</i>, 70(6), 1951-1992. <a href="https://doi.org/10.1007/s11423-022-10152-6">https://doi.org/10.1007/s11423-022-10152-6</a></li>
+      <li>Martinengo, L. et al. (2024). Spaced digital education for health professionals: Systematic review and meta-analysis. <i>Journal of Medical Internet Research</i>, 26, e57760. <a href="https://doi.org/10.2196/57760">https://doi.org/10.2196/57760</a></li>
+      <li>Mokhtari, S., Mokhtari, A., Shariat, S. V., Nazeri Astaneh, A. et Shalbafan, M. (2026). Innovative technologies in psychiatry education: A systematic review. <i>BMC Medical Education</i>, 26, 1254. <a href="https://doi.org/10.1186/s12909-026-09573-1">https://doi.org/10.1186/s12909-026-09573-1</a></li>
+      <li>Potter, A. et al. (2025). Identifying research priorities in digital education for health care: Umbrella review and modified Delphi method study. <i>Journal of Medical Internet Research</i>, 27, e66157. <a href="https://doi.org/10.2196/66157">https://doi.org/10.2196/66157</a></li>
+      <li>Sweller, J., van Merriënboer, J. J. G. et Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. <i>Educational Psychology Review</i>, 31(2), 261-292. <a href="https://doi.org/10.1007/s10648-019-09465-5">https://doi.org/10.1007/s10648-019-09465-5</a></li>
+      <li>Tawfik, A. A., Payne, L., Ketter, H. et James, J. (2025). What instruments do researchers use to evaluate LXD? A systematic review study. <i>Technology, Knowledge and Learning</i>, 30, 47-62. <a href="https://doi.org/10.1007/s10758-024-09763-0">https://doi.org/10.1007/s10758-024-09763-0</a></li>
+      <li>Tawfik, A. A., Schmidt, M., Payne, L. et Huang, R. (2024). Advancing understanding of learning experience design: Refining and clarifying definitions using an eDelphi study approach. <i>Educational Technology Research and Development</i>, 72, 1539-1561. <a href="https://doi.org/10.1007/s11423-024-10355-z">https://doi.org/10.1007/s11423-024-10355-z</a></li>
+      <li>Thomann, H. et Deutscher, V. (2025). Scaffolding through prompts in digital learning: A systematic review and meta-analysis of effectiveness on learning achievement. <i>Educational Research Review</i>, 47, 100686. <a href="https://doi.org/10.1016/j.edurev.2025.100686">https://doi.org/10.1016/j.edurev.2025.100686</a></li>
+      <li>Trumble, E., Lodge, J., Mandrusiak, A. et Forbes, R. (2024). Systematic review of distributed practice and retrieval practice in health professions education. <i>Advances in Health Sciences Education</i>, 29, 689-714. <a href="https://doi.org/10.1007/s10459-023-10274-3">https://doi.org/10.1007/s10459-023-10274-3</a></li>
+      <li>van Gaalen, A. E. J., Brouwer, J., Schönrock-Adema, J., Bouwkamp-Timmer, T., Jaarsma, A. D. C. et Georgiadis, J. R. (2021). Gamification of health professions education: A systematic review. <i>Advances in Health Sciences Education</i>, 26, 683-711. <a href="https://doi.org/10.1007/s10459-020-10000-3">https://doi.org/10.1007/s10459-020-10000-3</a></li>
+      <li>Wu, F. et al. (2023). Application of case-based learning in psychology teaching: A meta-analysis. <i>BMC Medical Education</i>, 23, 609. <a href="https://doi.org/10.1186/s12909-023-04525-5">https://doi.org/10.1186/s12909-023-04525-5</a></li>
+      <li>Yang, C., Luo, L., Vadillo, M. A., Yu, R. et Shanks, D. R. (2021). Testing (quizzing) boosts classroom learning: A systematic and meta-analytic review. <i>Psychological Bulletin</i>, 147(4), 399-435. <a href="https://doi.org/10.1037/bul0000309">https://doi.org/10.1037/bul0000309</a></li>
+    </ul>
+  </section>
+
+  <div class="signature">
+    <b>Mickaël Worms-Ehrminger</b>
+    <span>Docteur en santé publique · Tuteur de stage</span>
+  </div>
+</main>
+
+<footer class="pied">
+  <a href="espace.html">Espace du stage</a> ·   <a href="https://communication-santementale.fr/">communication-santementale.fr</a> · <a href="https://communication-santementale.fr/contact/">Contact</a><br>
+  © 2026 Mickaël Worms-Ehrminger · Communiquer en santé mentale
+</footer>
+</body>
+</html>
