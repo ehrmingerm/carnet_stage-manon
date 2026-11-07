@@ -192,6 +192,10 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
   .niveau,.famille,.trois > div,.numeros > li,.lignes li,.encadre{break-inside:avoid}
   .pied{display:none}
 }
+.familles-3{grid-template-columns:repeat(3, minmax(0,1fr))}
+.surveiller-hc{background:var(--fond); border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:12px; margin-bottom:18px}
+.numeros > li > div > p + p{margin-top:2px}
+@media (max-width:900px){ .familles-3{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -208,7 +212,8 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
   <div class="ouverture">
     <p class="sur-titre">Stage de Manon Couvidat · Triptyque recherche &amp; conseil</p>
     <h1>Fiche de mission</h1>
-    <p class="chapo">Le stage consiste à concevoir et tester un parcours d’apprentissage progressif en trois niveaux, dont les règles de conception pourront être réutilisées pour les trois parcours thématiques.</p>
+    <p class="chapo"><b style="font-weight:600;color:var(--encre)">Concevoir et tester un parcours d’apprentissage innovant en trois niveaux, selon une démarche UX fondée sur la psychologie cognitive.</b></p>
+    <p class="note" style="font-size:16px;line-height:25px"><b style="color:var(--texte-fort)">Question directrice.</b> Quelles méthodes d’apprentissage innovantes retenir pour un parcours en trois niveaux, comment les justifier par la psychologie cognitive, et comment en évaluer l’expérience avec les méthodes de l’UX&nbsp;?</p>
   </div>
 
   <section aria-labelledby="t-infos">
@@ -252,28 +257,47 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
     <p class="note apres">Ce référentiel est une base de travail. Il pourra être précisé pendant le stage.</p>
   </section>
 
+  <section aria-labelledby="t-volets">
+    <div class="section-tete">
+      <h2 id="t-volets">Trois volets et trois axes</h2>
+      <p class="sous-titre">Une méthode n’est pas retenue parce qu’elle est innovante, mais parce qu’un mécanisme cognitif la justifie et que les tests montrent que l’expérience fonctionne.</p>
+    </div>
+    <div class="trois">
+      <div><span class="freq">Les options pédagogiques</span><h3>Méthodes innovantes d’apprentissage</h3><p>Microapprentissage, parcours adaptatif (choix du niveau), cas et scénarios interactifs, quiz espacés, activités génératives, feedback immédiat et détaillé, ludification raisonnée.</p></div>
+      <div><span class="freq">La justification et l’observation</span><h3>Psychologie cognitive</h3><p>Connaissances initiales et catégorisation, métacognition du choix de niveau, charge cognitive et guidage.</p></div>
+      <div><span class="freq">La méthode de conception et de test</span><h3>UX</h3><p>Personas, carte d’expérience, architecture de l’information, prototypage, tests d’utilisabilité, heuristiques, accessibilité, rédaction des consignes.</p></div>
+    </div>
+    <h3 class="apres" style="margin-bottom:4px">Les trois axes de psychologie cognitive</h3>
+    <p class="note">Ce sont des hypothèses de conception, pas des hypothèses expérimentales.</p>
+    <ol class="numeros">
+      <li><span class="pastille">1</span><div><h3>Connaissances initiales et catégorisation</h3><p>Comment les apprenants organisent-ils spontanément les notions du niveau 1&nbsp;? Observé par entretiens et tri de cartes (phase 2).</p></div></li>
+      <li><span class="pastille">2</span><div><h3>Métacognition et choix du niveau</h3><p>Les apprenants choisissent-ils un niveau adapté, et sur quels indices&nbsp;? Conçu en phase 3, observé en phase 5.</p></div></li>
+      <li><span class="pastille">3</span><div><h3>Charge cognitive et guidage</h3><p>Le guidage et les feedbacks sont-ils dosés selon le niveau&nbsp;? Conçu en phases 3 et 4, observé en phase 5.</p></div></li>
+    </ol>
+  </section>
+
   <section aria-labelledby="t-objectifs">
     <div class="section-tete"><h2 id="t-objectifs">Objectifs</h2></div>
     <div class="encadre">
       <p class="sur-titre">Objectif général</p>
-      <p>Concevoir, prototyper et tester un parcours progressif en trois niveaux dans un parcours thématique, puis en tirer des règles de conception applicables aux deux autres.</p>
+      <p>Concevoir, prototyper et tester le module pilote d’un parcours progressif en trois niveaux, en retenant deux ou trois méthodes d’apprentissage innovantes justifiées par la psychologie cognitive, puis en tirer des règles de conception applicables aux autres parcours.</p>
     </div>
     <h3 class="apres" style="margin-bottom:4px">Objectifs spécifiques</h3>
     <ol class="numeros">
-      <li><span class="pastille">1</span><p class="simple">Identifier les besoins, les connaissances initiales et les difficultés anticipées des futurs apprenants.</p></li>
-      <li><span class="pastille">2</span><p class="simple">Choisir une méthode et un type de prototypage adaptés au projet, à partir d’une revue ciblée.</p></li>
-      <li><span class="pastille">3</span><p class="simple">Structurer les trois niveaux&nbsp;: prérequis, ordre des notions, activités, critères de réussite, possibilités de révision.</p></li>
-      <li><span class="pastille">4</span><p class="simple">Concevoir un module pilote et son environnement&nbsp;: entrée dans le parcours, choix du niveau, navigation, activités, feedbacks, visualisation de la progression.</p></li>
-      <li><span class="pastille">5</span><p class="simple">Évaluer l’utilisabilité et la cohérence du module pilote, puis le réviser.</p></li>
-      <li><span class="pastille">6</span><p class="simple">Vérifier que le gabarit s’applique à un module de chacun des deux autres parcours.</p></li>
-      <li><span class="pastille">7</span><p class="simple">Formaliser des règles de conception réutilisables et leurs limites.</p></li>
+      <li><span class="pastille">1</span><p class="simple">Cartographier les méthodes d’apprentissage innovantes et leur niveau de preuve, et formuler un modèle cognitif de l’apprenant.</p></li>
+      <li><span class="pastille">2</span><p class="simple">Choisir une démarche de conception et un type de prototype, à partir d’une revue ciblée.</p></li>
+      <li><span class="pastille">3</span><p class="simple">Recueillir les besoins, les connaissances initiales et les catégories spontanées des futurs apprenants (axe&nbsp;1).</p></li>
+      <li><span class="pastille">4</span><p class="simple">Structurer les trois niveaux et le choix du niveau, en justifiant la progression et le guidage (axes&nbsp;2 et&nbsp;3).</p></li>
+      <li><span class="pastille">5</span><p class="simple">Concevoir un module pilote qui met en œuvre deux ou trois méthodes innovantes.</p></li>
+      <li><span class="pastille">6</span><p class="simple">Tester l’utilisabilité et l’expérience du module, en observant le choix du niveau et l’effort mental perçu, puis le réviser.</p></li>
+      <li><span class="pastille">7</span><p class="simple">Vérifier que le gabarit s’applique aux deux autres parcours, et formaliser des règles de conception avec leur statut de preuve.</p></li>
     </ol>
   </section>
 
   <section aria-labelledby="t-deroule">
     <div class="section-tete">
       <h2 id="t-deroule">Déroulé de la mission</h2>
-      <p class="sous-titre">Six phases pour un total de 301&nbsp;heures. Les points d’encadrement sont inclus dans chaque phase.</p>
+      <p class="sous-titre">Six phases pour un total de 301&nbsp;heures. Les points d’encadrement sont inclus dans chaque phase, et chaque phase mobilise les trois volets.</p>
     </div>
     <div class="repartition" role="img" aria-label="Répartition des 301 heures entre les six phases : 35, 45, 50, 65, 65 et 41 heures">
       <div class="barre">
@@ -282,12 +306,12 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
       <div class="barre-legende"><span>Phase 1</span><span>Phase 6</span></div>
     </div>
     <ol class="numeros">
-      <li><span class="pastille">1</span><div><h3>Cadrage et revue ciblée</h3><p>Préciser les publics, les objectifs et les contraintes. Mener la revue de littérature sur les méthodes de conception et de prototypage. Choisir le parcours de travail et le type de prototype.</p></div><span class="heures">35<small>h</small></span></li>
-      <li><span class="pastille">2</span><div><h3>Recherche utilisateur</h3><p>Préparer et mener les entretiens. Analyser les besoins, les connaissances initiales et les difficultés anticipées.</p></div><span class="heures">45<small>h</small></span></li>
-      <li><span class="pastille">3</span><div><h3>Architecture des parcours</h3><p>Structurer avec le tuteur les trois niveaux, les prérequis, les activités et les modalités de progression.</p></div><span class="heures">50<small>h</small></span></li>
-      <li><span class="pastille">4</span><div><h3>Prototypage</h3><p>Concevoir le module pilote et son environnement.</p></div><span class="heures">65<small>h</small></span></li>
-      <li><span class="pastille">5</span><div><h3>Tests et améliorations</h3><p>Tester le module pilote avec des utilisateurs et par inspection. Réviser le prototype. Vérifier par inspection l’application du gabarit à un module de chacun des deux autres parcours.</p></div><span class="heures">65<small>h</small></span></li>
-      <li><span class="pastille">6</span><div><h3>Synthèse et transmission</h3><p>Formaliser les règles de conception, les recommandations et les limites.</p></div><span class="heures">41<small>h</small></span></li>
+      <li><span class="pastille">1</span><div><h3>Cadrage et revue de littérature</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Cartographie des méthodes et de leur niveau de preuve.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Modèle cognitif de l’apprenant, trois axes.</p><p><b style="color:var(--texte-fort)">UX.</b> Choix de la démarche (recherche orientée par la conception) et du type de prototype.</p></div><span class="heures">35<small>h</small></span></li>
+      <li><span class="pastille">2</span><div><h3>Recherche utilisateur</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Attentes et habitudes d’apprentissage en ligne.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axe 1&nbsp;: catégories spontanées, conceptions erronées.</p><p><b style="color:var(--texte-fort)">UX.</b> 6 à 8 entretiens, tri de cartes ouvert en ligne (une dizaine de participants), personas.</p></div><span class="heures">45<small>h</small></span></li>
+      <li><span class="pastille">3</span><div><h3>Architecture des parcours</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Sélection de 2 ou 3 méthodes pour le module pilote.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axes 2 et 3&nbsp;: choix du niveau, progression, guidage dégressif.</p><p><b style="color:var(--texte-fort)">UX.</b> Architecture de l’information, carte d’expérience, maquettes de basse fidélité.</p></div><span class="heures">50<small>h</small></span></li>
+      <li><span class="pastille">4</span><div><h3>Prototypage</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Mise en œuvre des méthodes retenues.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Feedbacks et consignes conçus pour limiter la charge.</p><p><b style="color:var(--texte-fort)">UX.</b> Prototype interactif, rédaction des consignes, accessibilité.</p></div><span class="heures">65<small>h</small></span></li>
+      <li><span class="pastille">5</span><div><h3>Tests et améliorations</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Expérience de chaque méthode&nbsp;: comprise, utilisée, appréciée.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axes 2 et 3 observés&nbsp;: choix du niveau, effort mental perçu, difficultés verbalisées.</p><p><b style="color:var(--texte-fort)">UX.</b> Deux cycles de 5 participants&nbsp;: tâches, verbalisation à voix haute, SUS. Inspection heuristique du gabarit sur les deux autres parcours.</p></div><span class="heures">65<small>h</small></span></li>
+      <li><span class="pastille">6</span><div><h3>Synthèse et transmission</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Recommandations par méthode.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Statut de preuve de chaque règle.</p><p><b style="color:var(--texte-fort)">UX.</b> Guide de conception réutilisable.</p></div><span class="heures">41<small>h</small></span></li>
     </ol>
     <div class="total"><b>Total</b><span class="heures">301<small>h</small></span></div>
   </section>
@@ -298,33 +322,34 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
       <p class="sous-titre">Les livrables principaux sont ceux qui permettent de produire d’autres modules, plus que le contenu du module pilote lui-même.</p>
     </div>
     <ul class="lignes">
-      <li><div class="haut"><h3>Note de cadrage et synthèse de la revue, avec le choix argumenté du type de prototype</h3><span class="tag">Phase 1</span></div><p><b>Après le stage&nbsp;:</b> justifier les choix de conception</p></li>
-      <li><div class="haut"><h3>Synthèse des besoins et des principaux obstacles, appuyée sur les entretiens</h3><span class="tag">Phase 2</span></div><p><b>Après le stage&nbsp;:</b> point de départ pour les autres parcours</p></li>
+      <li><div class="haut"><h3>Note de cadrage&nbsp;: modèle cognitif de l’apprenant, grille méthode × mécanisme × preuve, choix argumenté de la démarche et du prototype</h3><span class="tag">Phase 1</span></div><p><b>Après le stage&nbsp;:</b> justifier les choix de conception</p></li>
+      <li><div class="haut"><h3>Synthèse des besoins, personas et carte des catégories spontanées</h3><span class="tag">Phase 2</span></div><p><b>Après le stage&nbsp;:</b> point de départ pour les autres parcours</p></li>
       <li><div class="haut"><h3>Référentiel des trois niveaux&nbsp;: verbes d’action et critères de réussite</h3><span class="tag">Phase 3</span></div><p><b>Après le stage&nbsp;:</b> commun aux trois parcours</p></li>
-      <li><div class="haut"><h3>Carte des parcours et gabarit de module</h3><span class="tag">Phase 3</span></div><p><b>Après le stage&nbsp;:</b> modèle pour tous les modules</p></li>
-      <li><div class="haut"><h3>Prototype du module pilote et de son environnement</h3><span class="tag">Phases 4 et 5</span></div><p><b>Après le stage&nbsp;:</b> exemple de référence</p></li>
+      <li><div class="haut"><h3>Carte des parcours, gabarit de module et justification de chaque méthode retenue</h3><span class="tag">Phase 3</span></div><p><b>Après le stage&nbsp;:</b> modèle pour tous les modules</p></li>
+      <li><div class="haut"><h3>Module pilote et fiche de justification cognitive</h3><span class="tag">Phases 4 et 5</span></div><p><b>Après le stage&nbsp;:</b> exemple de référence</p></li>
       <li><div class="haut"><h3>Protocole de test réutilisable&nbsp;: tâches types, grille d’observation, mesures</h3><span class="tag">Phase 5</span></div><p><b>Après le stage&nbsp;:</b> tester les modules suivants</p></li>
       <li><div class="haut"><h3>Résultats des tests et problèmes hiérarchisés</h3><span class="tag">Phase 5</span></div><p><b>Après le stage&nbsp;:</b> suivi des révisions</p></li>
-      <li><div class="haut"><h3>Règles de conception par niveau, recommandations et limites</h3><span class="tag">Phase 6</span></div><p><b>Après le stage&nbsp;:</b> guide de production des parcours</p></li>
+      <li><div class="haut"><h3>Règles de conception avec leur statut de preuve, recommandations par méthode et limites</h3><span class="tag">Phase 6</span></div><p><b>Après le stage&nbsp;:</b> guide de production des parcours</p></li>
     </ul>
   </section>
 
   <section aria-labelledby="t-revue">
     <div class="section-tete">
       <h2 id="t-revue">Questions de la revue initiale</h2>
-      <p class="sous-titre">La revue doit aboutir à une décision sur la méthode de conception et le type de prototype. Elle s’organise autour de quatre questions.</p>
+      <p class="sous-titre">La revue doit aboutir à des décisions sur les méthodes, la démarche de conception et le type de prototype. Elle s’organise autour de cinq questions.</p>
     </div>
     <ol class="numeros">
-      <li><span class="pastille">1</span><div><h3>Quelles méthodes de conception, y compris innovantes, conviennent à un projet de cette taille&nbsp;?</h3><p>Par exemple la recherche orientée par la conception (<i>design-based research</i>) ou les cycles itératifs courts.</p></div></li>
-      <li><span class="pastille">2</span><div><h3>Quel niveau de fidélité à quelle étape&nbsp;?</h3><p>Maquette papier ou filaire pour tester l’architecture, prototype interactif pour tester les activités et les feedbacks.</p></div></li>
-      <li><span class="pastille">3</span><div><h3>Selon quels critères choisir l’outil&nbsp;?</h3>
+      <li><span class="pastille">1</span><div><h3>Quelles méthodes d’apprentissage innovantes existent, et quel est leur niveau de preuve&nbsp;?</h3><p>Par exemple le microapprentissage, le parcours adaptatif, les cas et scénarios interactifs, les quiz espacés, les activités génératives, le feedback détaillé ou la ludification.</p></div></li>
+      <li><span class="pastille">2</span><div><h3>Quelle démarche de conception convient à un projet de cette taille&nbsp;?</h3><p>Par exemple la recherche orientée par la conception (<i>design-based research</i>), le design de l’expérience d’apprentissage ou les cycles itératifs courts.</p></div></li>
+      <li><span class="pastille">3</span><div><h3>Quel niveau de fidélité à quelle étape&nbsp;?</h3><p>Maquette papier ou filaire pour tester l’architecture, prototype interactif pour tester les activités et les feedbacks.</p></div></li>
+      <li><span class="pastille">4</span><div><h3>Selon quels critères choisir l’outil&nbsp;?</h3>
         <ul class="sous-liste">
           <li>Facilité de maintenance par le tuteur après le stage</li>
           <li>Accessibilité (le RGAA est la référence française)</li>
           <li>Coût</li>
           <li>Possibilité de réutiliser le gabarit pour les autres parcours</li>
         </ul></div></li>
-      <li><span class="pastille">4</span><div><h3>Quels principes issus de la psychologie cognitive appliquer à la progression&nbsp;?</h3><p>Charge cognitive, renversement de l’expertise, estompage progressif du guidage, pratique de récupération et espacement.</p></div></li>
+      <li><span class="pastille">5</span><div><h3>Quel modèle cognitif de l’apprenant adopter&nbsp;?</h3><p>Connaissances initiales et catégorisation, métacognition du choix de niveau, charge cognitive et guidage.</p></div></li>
     </ol>
     <p class="attention"><b>Le critère de maintenance est déterminant.</b> Un prototype que seule la stagiaire sait modifier ne servira pas aux autres parcours.</p>
   </section>
@@ -332,35 +357,56 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
   <section aria-labelledby="t-methode">
     <div class="section-tete">
       <h2 id="t-methode">Cadre méthodologique</h2>
-      <p class="sous-titre">Les tests portent sur l’utilisabilité et la cohérence du parcours. Ils ne visent pas à démontrer l’efficacité pédagogique, que de petits échantillons ne permettent pas d’établir. Le rapport le précisera.</p>
+      <p class="sous-titre">Les tests portent sur l’utilisabilité, la cohérence et l’expérience du parcours. Ils ne visent pas à démontrer l’efficacité pédagogique, que de petits échantillons ne permettent pas d’établir. Les résultats sont présentés de façon descriptive.</p>
     </div>
-    <div class="familles">
+    <div class="familles familles-3">
       <div class="famille">
-        <h3>Avec utilisateurs</h3>
+        <h3>Recherche utilisateur</h3>
         <h4>Méthodes</h4>
         <ul class="puces">
-          <li>Réalisation de tâches&nbsp;: choisir un niveau, trouver une ressource, comprendre une consigne, réaliser une activité, interpréter un feedback</li>
-          <li>Verbalisation à voix haute</li>
-          <li>Taux de réussite</li>
-          <li>Échelle d’utilisabilité (SUS)</li>
-          <li>Échelle d’effort mental perçu</li>
+          <li>6 à 8 entretiens</li>
+          <li>Tri de cartes ouvert en ligne, une dizaine de participants</li>
+          <li>Personas et carte d’expérience</li>
         </ul>
         <h4>Ce qui est évalué</h4>
-        <p>Utilisabilité, compréhension, charge perçue</p>
+        <p>Besoins, connaissances initiales, catégories spontanées (axe 1)</p>
+      </div>
+      <div class="famille">
+        <h3>Tests avec utilisateurs</h3>
+        <h4>Méthodes</h4>
+        <ul class="puces">
+          <li>Deux cycles de 5 participants</li>
+          <li>Tâches&nbsp;: choisir un niveau, trouver une ressource, comprendre une consigne, réaliser une activité, interpréter un feedback</li>
+          <li>Verbalisation à voix haute, taux de réussite</li>
+          <li>SUS et échelle d’effort mental perçu</li>
+        </ul>
+        <h4>Ce qui est évalué</h4>
+        <p>Utilisabilité, expérience des méthodes, choix du niveau (axe 2), charge perçue (axe 3)</p>
       </div>
       <div class="famille">
         <h3>Sans utilisateurs</h3>
         <h4>Méthodes</h4>
         <ul class="puces">
-          <li>Inspection de l’alignement entre objectifs, activités et évaluation (alignement constructif)</li>
-          <li>Évaluation heuristique</li>
-          <li>Parcours cognitif</li>
+          <li>Alignement entre objectifs, activités et évaluation</li>
+          <li>Évaluation heuristique et parcours cognitif</li>
+          <li>Vérification d’accessibilité (RGAA)</li>
         </ul>
         <h4>Ce qui est évalué</h4>
-        <p>Cohérence pédagogique, ergonomie, transférabilité du gabarit</p>
+        <p>Cohérence pédagogique, ergonomie, accessibilité, transférabilité du gabarit</p>
       </div>
     </div>
     <p class="note apres">Les méthodes sans utilisateurs servent aussi à vérifier que le gabarit s’applique aux deux autres parcours, sans tests supplémentaires.</p>
+    <div class="surveiller-hc apres">
+      <h3>Hors du champ du stage</h3>
+      <ul class="puces">
+        <li>La démonstration de l’efficacité pédagogique et les comparaisons statistiques entre versions</li>
+        <li>La construction d’un test de niveau validé</li>
+        <li>Le développement technique complet de la plateforme</li>
+        <li>L’évaluation de toutes les méthodes innovantes&nbsp;: seules 2 ou 3 sont mises en œuvre dans le module pilote</li>
+        <li>L’oculométrie et la neuro-imagerie</li>
+      </ul>
+    </div>
+    <p class="attention"><b>Limite à discuter dans le rapport.</b> Une partie des résultats sur la charge cognitive et le guidage vient de contenus très structurés, comme les mathématiques. Leur transfert à des compétences d’analyse, comme celles des niveaux 2 et 3, est moins établi.</p>
   </section>
 
   <section aria-labelledby="t-ethique">
@@ -373,6 +419,8 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
       <li>Rédiger un formulaire de consentement</li>
       <li>Définir le mode de stockage, la durée de conservation et l’anonymisation des enregistrements, conformément au RGPD</li>
       <li>Si le parcours santé mentale est retenu, prévoir des précautions pour les personnes concernées par un trouble psychique&nbsp;: contenus abordés, possibilité d’interrompre, ressources d’aide à indiquer</li>
+      <li>Demander à l’université si un avis de comité d’éthique de la recherche est nécessaire</li>
+      <li>Identifier dès la phase 1 les publics auprès desquels recruter une vingtaine de participants au total (entretiens, tri de cartes, tests)</li>
     </ul>
   </section>
 
@@ -431,6 +479,12 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
       <li>van Gaalen, A. E. J., Brouwer, J., Schönrock-Adema, J., Bouwkamp-Timmer, T., Jaarsma, A. D. C. et Georgiadis, J. R. (2021). Gamification of health professions education: A systematic review. <i>Advances in Health Sciences Education</i>, 26, 683-711. <a href="https://doi.org/10.1007/s10459-020-10000-3">https://doi.org/10.1007/s10459-020-10000-3</a></li>
       <li>Wu, F. et al. (2023). Application of case-based learning in psychology teaching: A meta-analysis. <i>BMC Medical Education</i>, 23, 609. <a href="https://doi.org/10.1186/s12909-023-04525-5">https://doi.org/10.1186/s12909-023-04525-5</a></li>
       <li>Yang, C., Luo, L., Vadillo, M. A., Yu, R. et Shanks, D. R. (2021). Testing (quizzing) boosts classroom learning: A systematic and meta-analytic review. <i>Psychological Bulletin</i>, 147(4), 399-435. <a href="https://doi.org/10.1037/bul0000309">https://doi.org/10.1037/bul0000309</a></li>
+    </ul>
+    <h3>Manuels de psychologie cognitive</h3>
+    <ul>
+      <li>Fortin, C. et Rousseau, R. (2012). <i>Psychologie cognitive&nbsp;: une approche de traitement de l’information</i>. Presses de l’Université du Québec. Chapitre 10 pour l’axe 1&nbsp;; chapitres 7 et 8 pour les révisions.</li>
+      <li>Habib, M., Lavergne, L. et Caparos, S. (2018). <i>Psychologie cognitive&nbsp;: cours, méthodologie, entraînement</i>. Armand Colin. Chapitres 2, 7 et 9.</li>
+      <li>Lieury, A. (2008). <i>Manuel visuel de psychologie cognitive</i>. Dunod. Sections sur l’apprentissage massé et distribué, le transfert et l’attention.</li>
     </ul>
     <h3>Interface, utilisabilité et accessibilité</h3>
     <ul>
