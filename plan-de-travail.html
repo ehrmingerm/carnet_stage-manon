@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Plan de travail du stage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Charte « Communiquer en santé mentale » avec le logo Triptyque : colonne de lecture sur surface blanche, accent indigo unique. Mode clair imposé par la charte. */
+:root{
+  color-scheme: light;
+  --indigo:#4338F2; --indigo-clair:#A9A4FF; --encre:#0E0F12; --texte-fort:#23252C; --texte:#3B3E48;
+  --texte-2:#5B5F6A; --texte-3:#6B6F7A; --bordure:#E6E6EA; --filet:#EEEEF2;
+  --fond:#F7F7F5; --surface:#FFFFFF; --lavande:#F1F0F8; --indigo-pale:#ECEBFF; --comprendre:#2A1FB8;
+  --penser-bg:#DDF5EA; --penser:#0B5A39; --analyser-bg:#FFE9E2; --analyser:#9A2E14;
+  --titre:'Bricolage Grotesque',Arial,Helvetica,sans-serif;
+  --corps:'Instrument Sans',Arial,Helvetica,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--fond); color:var(--texte); font:400 16px/1.6 var(--corps);
+  padding-block:32px 48px; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing:antialiased}
+.page{max-width:820px; margin:0 auto; background:var(--surface); border:1px solid var(--bordure); border-radius:28px; padding:36px 48px 40px}
+h1,h2,h3{font-family:var(--titre); color:var(--encre); margin:0; text-wrap:balance}
+h1{font-size:40px; line-height:43px; font-weight:700; letter-spacing:-1.4px}
+h2{font-size:26px; line-height:30px; font-weight:700; letter-spacing:-.6px}
+h3{font-size:19px; line-height:24px; font-weight:600; letter-spacing:-.3px}
+p{margin:0}
+a{color:var(--indigo); font-weight:600; text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--indigo); outline-offset:2px; border-radius:4px}
+
+.entete{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid var(--bordure)}
+.logo-img{display:block; height:40px; width:auto}
+.mention{text-align:right; font-size:13px; line-height:18px}
+.mention b{display:block; font-weight:600; color:var(--encre)}
+.mention span{color:var(--texte-2)}
+
+.ouverture{padding:32px 0 4px; display:flex; flex-direction:column; gap:12px}
+.sur-titre{font:600 13px/18px var(--corps); color:var(--indigo)}
+.chapo{font-size:17px; line-height:27px; max-width:62ch}
+
+section{margin-top:44px; padding-top:30px; border-top:1px solid var(--bordure)}
+.section-tete{display:flex; flex-direction:column; gap:6px; margin-bottom:22px}
+.sous-titre{font-size:15px; line-height:22px; color:var(--texte-2); max-width:64ch}
+.note{font-size:14px; line-height:21px; color:var(--texte-2); max-width:66ch}
+.apres{margin-top:18px}
+
+.encadre{background:var(--indigo-pale); border-radius:22px; padding:24px 26px; display:flex; flex-direction:column; gap:10px}
+.encadre .sur-titre{color:var(--comprendre)}
+.encadre .mission{font:700 22px/28px var(--titre); color:var(--encre); letter-spacing:-.4px}
+.encadre p{font-size:15px; line-height:23px; color:var(--texte-fort)}
+.filtre{background:var(--encre); color:#C9CBD2; border-radius:22px; padding:24px 26px; display:flex; flex-direction:column; gap:8px; margin-top:14px}
+.filtre .sur-titre{color:var(--indigo-clair)}
+.filtre p.q{font:700 22px/28px var(--titre); color:#fff; letter-spacing:-.4px}
+.filtre p{font-size:15px; line-height:23px}
+
+.deux{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.carte{border:1px solid var(--bordure); border-radius:18px; padding:20px 22px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.carte h3{font-size:18px; line-height:23px}
+.puces{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px}
+.puces li{font-size:15px; line-height:23px; padding-left:18px; position:relative; color:var(--texte-fort)}
+.puces li::before{content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700}
+.puces li b{font-weight:600; color:var(--encre)}
+.non{background:var(--analyser-bg); border-radius:18px; padding:20px 22px; display:flex; flex-direction:column; gap:10px}
+.non h3{color:var(--analyser)}
+.non .puces li::before{content:"–"; color:var(--analyser)}
+
+.semaine{border:1px solid var(--bordure); border-radius:22px; padding:24px 26px; display:flex; flex-direction:column; gap:16px}
+.semaine + .semaine{margin-top:16px}
+.semaine-tete{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap}
+.semaine-tete .gauche{display:flex; flex-direction:column; gap:4px; min-width:0}
+.quand{font:600 13px/18px var(--corps); color:var(--indigo)}
+.objectif{font:700 22px/27px var(--titre); color:var(--encre); letter-spacing:-.4px}
+.total{font:700 20px/24px var(--titre); color:var(--encre); white-space:nowrap; font-variant-numeric:tabular-nums}
+.total small{font:400 13px/18px var(--corps); color:var(--texte-2)}
+.evenement{display:inline-flex; gap:8px; align-items:center; background:var(--indigo-pale); color:var(--texte-fort); border-radius:999px; padding:6px 14px; font-size:14px; line-height:20px; align-self:flex-start}
+.evenement b{color:var(--comprendre)}
+.tableau{overflow-x:auto; border:1px solid var(--bordure); border-radius:14px}
+table{border-collapse:collapse; width:100%; font-size:14px; line-height:21px}
+th,td{text-align:left; vertical-align:top; padding:10px 14px; border-bottom:1px solid var(--filet)}
+th{font:600 13px/18px var(--corps); color:var(--texte-2); background:var(--fond); white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td{color:var(--texte-fort)}
+td.h{white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--encre); font-weight:600}
+td.sert{color:var(--texte-2)}
+.livrable{background:var(--penser-bg); border-radius:14px; padding:14px 18px; display:flex; flex-direction:column; gap:4px}
+.livrable p{font-size:15px; line-height:23px; color:var(--texte-fort)}
+.livrable .lbl{font:700 13px/18px var(--corps); color:var(--penser)}
+
+.signature{margin-top:44px; padding-top:28px; border-top:1px solid var(--bordure); display:flex; flex-direction:column; gap:2px}
+.signature b{font:700 18px/24px var(--titre); color:var(--encre); letter-spacing:-.3px}
+.signature span{font-size:14px; line-height:20px; color:var(--texte-2)}
+.pied{max-width:820px; margin:22px auto 0; text-align:center; font-size:12px; line-height:19px; color:var(--texte-3)}
+.pied a{color:var(--texte-3); text-decoration:underline; font-weight:400}
+
+@media (max-width:700px){ .deux{grid-template-columns:1fr} }
+@media (max-width:620px){
+  .page{padding:26px 22px 30px; border-radius:22px}
+  h1{font-size:32px; line-height:36px}
+  h2{font-size:23px; line-height:27px}
+  .mention{text-align:left}
+  .encadre,.filtre,.semaine{padding:20px}
+}
+@media print{
+  body{background:#fff; padding:0}
+  .page{border:0; padding:0; max-width:none}
+  .semaine,.carte,.encadre,.filtre{break-inside:avoid}
+  .pied{display:none}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="entete">
+    <div class="logo">
+      <img class="logo-img" src="triptyque-logo.png" alt="Triptyque, études et communication en santé" width="172" height="40">
+    </div>
+    <div class="mention"><b>Stage de M1 · Plan de travail</b><span>du 16&nbsp;novembre au 11&nbsp;décembre 2026</span></div>
+  </header>
+
+  <div class="ouverture">
+    <p class="sur-titre">Stage de Manon · Triptyque recherche &amp; conseil</p>
+    <h1>Plan de travail des premières semaines</h1>
+    <p class="chapo">Quatre semaines pour terminer la phase de cadrage et lancer la recherche utilisateur. Chaque semaine a un objectif, des tâches avec une durée indicative et un livrable. Placez les tâches sur vos jours de présence&nbsp;; nous ajustons au point hebdomadaire.</p>
+  </div>
+
+  <section aria-labelledby="t-cap">
+    <div class="section-tete">
+      <h2 id="t-cap">Le cap</h2>
+    </div>
+    <div class="encadre">
+      <p class="sur-titre">Ce que nous construisons</p>
+      <p class="mission">Un module pilote d’un parcours de formation en trois niveaux, sur un sujet de santé publique, conçu avec les méthodes de l’UX, justifié par la psychologie cognitive, et testé auprès d’utilisateurs.</p>
+      <p>Parcours et niveau du module pilote&nbsp;: [à préciser par le tuteur].</p>
+    </div>
+    <div class="filtre">
+      <p class="sur-titre">Avant chaque tâche</p>
+      <p class="q">Est-ce que cela m’aide à concevoir ou à tester le module pilote&nbsp;?</p>
+      <p>Si oui, allez-y. Si non, notez l’idée dans la rubrique «&nbsp;En attente&nbsp;» du document de suivi. Si vous hésitez, demandez avant de vous lancer.</p>
+    </div>
+    <div class="deux apres">
+      <div class="carte">
+        <h3>Lire pour décider</h3>
+        <ul class="puces">
+          <li>Chaque lecture répond à l’une des cinq questions de la revue. Sinon, elle attend.</li>
+          <li>Une lecture se termine par une ligne dans le tableur et une phrase&nbsp;: «&nbsp;ce que cela change pour le module&nbsp;».</li>
+          <li>Pas plus de la moitié de la semaine en lecture. L’autre moitié produit quelque chose&nbsp;: un tableau, un croquis, un texte.</li>
+        </ul>
+      </div>
+      <div class="non">
+        <h3>Pas maintenant</h3>
+        <ul class="puces">
+          <li>Écrire des articles de vulgarisation</li>
+          <li>Explorer des thématiques qui ne servent pas le module pilote</li>
+          <li>Chercher une bibliographie exhaustive</li>
+          <li>Choisir l’outil définitif avant la note de cadrage</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-routine">
+    <div class="section-tete">
+      <h2 id="t-routine">La routine de chaque journée</h2>
+      <p class="sous-titre">Vingt-cinq minutes par jour pour que tout soit consigné au même endroit.</p>
+    </div>
+    <div class="deux">
+      <div class="carte">
+        <h3>En début de journée · 10&nbsp;min</h3>
+        <ul class="puces">
+          <li>Dupliquez l’entrée du jour dans le document de suivi et datez-la.</li>
+          <li>Écrivez deux ou trois tâches, prises dans le plan de la semaine.</li>
+          <li>Pour chacune, notez le livrable qu’elle fait avancer.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>En fin de journée · 15&nbsp;min</h3>
+        <ul class="puces">
+          <li>Remplissez «&nbsp;Ce qui a avancé&nbsp;» et le statut des tâches.</li>
+          <li>Reportez les lectures dans le tableur.</li>
+          <li>Notez les questions pour le tuteur avec #tuteur, et les usages de l’IA.</li>
+          <li>Mettez à jour le registre des heures dans le carnet.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note apres">Pour le point hebdomadaire, préparez trois réponses&nbsp;: ce que j’ai produit, la décision dont j’ai besoin, ce qui me bloque.</p>
+  </section>
+
+  <section aria-labelledby="t-semaines">
+    <div class="section-tete">
+      <h2 id="t-semaines">Semaine par semaine</h2>
+      <p class="sous-titre">La phase de cadrage compte 35&nbsp;heures, dont une partie a été faite la première semaine. Les durées sont indicatives et s’ajustent aux jours de présence.</p>
+    </div>
+
+    <div class="semaine">
+      <div class="semaine-tete">
+        <div class="gauche"><p class="quand">Semaine 2 · 16 au 20&nbsp;novembre</p><p class="objectif">Voir ce que nous construisons</p></div>
+        <p class="total">10<small>&nbsp;h</small></p>
+      </div>
+      <p class="evenement"><b>Mardi 17&nbsp;novembre</b> Séminaire</p>
+      <div class="tableau"><table>
+        <thead><tr><th>Tâche</th><th>Durée</th><th>Sert à</th></tr></thead>
+        <tbody>
+          <tr><td>Croquis du parcours, version 0&nbsp;: l’entrée, le choix du niveau, les trois niveaux, un module. Sur papier ou en maquette simple.</td><td class="h">2&nbsp;h</td><td class="sert">Ancrer le travail sur un objet visible</td></tr>
+          <tr><td>Lectures pour la question 1&nbsp;: Carpenter et al. (2022), van Gaalen et al. (2021), Thomann et Deutscher (2025). Une ligne chacune dans le tableur.</td><td class="h">3&nbsp;h</td><td class="sert">Cartographie des méthodes</td></tr>
+          <tr><td>Cartographie des méthodes innovantes, version 1&nbsp;: un tableau de 6 à 8 méthodes, avec pour chacune le mécanisme cognitif et le niveau de preuve.</td><td class="h">2&nbsp;h</td><td class="sert">Note de cadrage</td></tr>
+          <tr><td>van Merriënboer et al. (2025), chapitres 2, 3 et 6. Une idée de progression à reporter sur le croquis.</td><td class="h">2&nbsp;h</td><td class="sert">Architecture des niveaux</td></tr>
+          <tr><td>Point hebdomadaire et premier bilan de quinzaine.</td><td class="h">1&nbsp;h</td><td class="sert">Ajuster le plan</td></tr>
+        </tbody>
+      </table></div>
+      <div class="livrable"><p class="lbl">Livrable du vendredi 20&nbsp;novembre</p><p>Le croquis version 0 et la cartographie version 1. C’est fini quand le croquis montre les trois niveaux et que chaque méthode du tableau a une source.</p></div>
+    </div>
+
+    <div class="semaine">
+      <div class="semaine-tete">
+        <div class="gauche"><p class="quand">Semaine 3 · 23 au 27&nbsp;novembre</p><p class="objectif">Décider avec quoi construire</p></div>
+        <p class="total">9,5<small>&nbsp;h</small></p>
+      </div>
+      <div class="tableau"><table>
+        <thead><tr><th>Tâche</th><th>Durée</th><th>Sert à</th></tr></thead>
+        <tbody>
+          <tr><td>Lectures pour la question 5&nbsp;: Sweller et al. (2019), Chen et al. (2017), Fortin et Rousseau (2012) chapitre 10, Habib et al. (2018) chapitre 9.</td><td class="h">3&nbsp;h</td><td class="sert">Modèle cognitif</td></tr>
+          <tr><td>Modèle cognitif de l’apprenant, version 1&nbsp;: une page, les trois axes et une hypothèse de conception par axe.</td><td class="h">1&nbsp;h</td><td class="sert">Note de cadrage</td></tr>
+          <tr><td>Lectures pour les questions 3 et 4&nbsp;: Floor (2023) chapitre 5, Lu et al. (2022).</td><td class="h">2&nbsp;h</td><td class="sert">Choix du prototype</td></tr>
+          <tr><td>Grille de comparaison des outils de prototypage&nbsp;: 4 ou 5 outils, selon les 5 critères du guide d’accueil.</td><td class="h">2&nbsp;h</td><td class="sert">Choix de l’outil</td></tr>
+          <tr><td>Croquis version 1&nbsp;: y placer les 2 ou 3 méthodes retenues à titre provisoire.</td><td class="h">1&nbsp;h</td><td class="sert">Module pilote</td></tr>
+          <tr><td>Point hebdomadaire.</td><td class="h">0,5&nbsp;h</td><td class="sert">Ajuster le plan</td></tr>
+        </tbody>
+      </table></div>
+      <div class="livrable"><p class="lbl">Livrable du vendredi 27&nbsp;novembre</p><p>Le modèle cognitif version 1, la grille des outils et le croquis version 1. C’est fini quand chaque méthode retenue sur le croquis est reliée à un axe du modèle cognitif.</p></div>
+    </div>
+
+    <div class="semaine">
+      <div class="semaine-tete">
+        <div class="gauche"><p class="quand">Semaine 4 · 30&nbsp;novembre au 4&nbsp;décembre</p><p class="objectif">Rédiger la note de cadrage</p></div>
+        <p class="total">7,5<small>&nbsp;h</small></p>
+      </div>
+      <div class="tableau"><table>
+        <thead><tr><th>Tâche</th><th>Durée</th><th>Sert à</th></tr></thead>
+        <tbody>
+          <tr><td>Note de cadrage, version 1&nbsp;: publics, objectifs, contraintes, modèle cognitif, 2 ou 3 méthodes retenues, démarche, type de prototype, limites. Quatre pages au plus.</td><td class="h">5&nbsp;h</td><td class="sert">Livrable de la phase 1</td></tr>
+          <tr><td>Liste des questions encore ouvertes, et de ce qui reste à vérifier.</td><td class="h">0,5&nbsp;h</td><td class="sert">Note de cadrage</td></tr>
+          <tr><td>Préparation de la phase 2&nbsp;: publics à recruter et moyens de les joindre.</td><td class="h">1&nbsp;h</td><td class="sert">Recherche utilisateur</td></tr>
+          <tr><td>Deuxième bilan de quinzaine et validation de la note.</td><td class="h">1&nbsp;h</td><td class="sert">Passage en phase 2</td></tr>
+        </tbody>
+      </table></div>
+      <div class="livrable"><p class="lbl">Livrable du vendredi 4&nbsp;décembre</p><p>La note de cadrage, version 1, soumise à validation. C’est fini quand une personne extérieure comprend, en la lisant, ce que sera le module pilote et pourquoi.</p></div>
+    </div>
+
+    <div class="semaine">
+      <div class="semaine-tete">
+        <div class="gauche"><p class="quand">Semaine 5 · 7 au 11&nbsp;décembre · phase 2</p><p class="objectif">Préparer la recherche utilisateur</p></div>
+        <p class="total">10<small>&nbsp;h</small></p>
+      </div>
+      <div class="tableau"><table>
+        <thead><tr><th>Tâche</th><th>Durée</th><th>Sert à</th></tr></thead>
+        <tbody>
+          <tr><td>Guide d’entretien&nbsp;: besoins, habitudes d’apprentissage en ligne, connaissances initiales.</td><td class="h">3&nbsp;h</td><td class="sert">Entretiens</td></tr>
+          <tr><td>Jeu de cartes pour le tri ouvert&nbsp;: 20 à 30 notions du niveau 1.</td><td class="h">2&nbsp;h</td><td class="sert">Axe 1</td></tr>
+          <tr><td>Choix de l’outil de tri de cartes en ligne.</td><td class="h">1&nbsp;h</td><td class="sert">Tri de cartes</td></tr>
+          <tr><td>Note d’information et formulaire de consentement, avec le tuteur.</td><td class="h">2&nbsp;h</td><td class="sert">Cadre éthique</td></tr>
+          <tr><td>Premiers contacts de recrutement.</td><td class="h">2&nbsp;h</td><td class="sert">Entretiens et tri</td></tr>
+        </tbody>
+      </table></div>
+      <div class="livrable"><p class="lbl">Livrable du vendredi 11&nbsp;décembre</p><p>Le guide d’entretien, le jeu de cartes, les documents d’information et de consentement, et deux premiers participants contactés.</p></div>
+    </div>
+  </section>
+
+  <div class="signature">
+    <b>Mickaël Worms-Ehrminger</b>
+    <span>Tuteur de stage</span>
+  </div>
+</main>
+
+<footer class="pied">
+  <a href="espace.html">Espace du stage</a> · <a href="https://communication-santementale.fr/">communication-santementale.fr</a><br>
+  © 2026 Mickaël Worms-Ehrminger · Triptyque
+</footer>
+</body>
+</html>
