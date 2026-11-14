@@ -82,6 +82,7 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
 /* Référentiel */
 .niveaux{display:flex; flex-direction:column; gap:12px}
 .niveau{border:1px solid var(--bordure); border-radius:var(--r-petit); padding:18px 20px; display:grid; grid-template-columns:120px repeat(3, minmax(0,1fr)); gap:16px}
+.niveau.deux-col{grid-template-columns:150px repeat(2, minmax(0,1fr))}
 .niveau-nom{display:flex; flex-direction:column; gap:4px}
 .niveau-nom .num{font:700 13px/18px var(--corps); color:var(--indigo)}
 .niveau-nom b{font:700 19px/23px var(--titre); color:var(--encre); letter-spacing:-.3px}
@@ -172,7 +173,7 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
 .pied a{color:var(--texte-3); text-decoration:underline; font-weight:400}
 
 @media (max-width:700px){
-  .niveau{grid-template-columns:1fr; gap:12px}
+  .niveau,.niveau.deux-col{grid-template-columns:1fr; gap:12px}
   .familles,.trois{grid-template-columns:1fr}
 }
 @media (max-width:620px){
@@ -214,7 +215,7 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
     <h1>Fiche de mission</h1>
     <p class="chapo"><b style="font-weight:600;color:var(--encre)">Concevoir et tester un parcours d’apprentissage innovant en trois niveaux, selon une démarche UX fondée sur la psychologie cognitive.</b></p>
     <p class="note" style="font-size:16px;line-height:25px"><b style="color:var(--texte-fort)">Question directrice.</b> Quelles méthodes d’apprentissage innovantes retenir pour un parcours en trois niveaux, comment les justifier par la psychologie cognitive, et comment en évaluer l’expérience avec les méthodes de l’UX&nbsp;?</p>
-    <p class="note" style="font-size:16px;line-height:25px"><b style="color:var(--texte-fort)">Module pilote.</b> Parcours «&nbsp;Comprendre la communication en santé&nbsp;», niveau 2 «&nbsp;Analyser&nbsp;». L’entrée dans le parcours et le choix du niveau sont conçus en entier. Les niveaux 1 et 3 prennent la forme de modules témoins, réduits à une activité représentative chacun. Un fil rouge relie les trois niveaux&nbsp;: un même message de santé publique, traité avec un guidage qui diminue d’un niveau à l’autre.</p>
+    <p class="note" style="font-size:16px;line-height:25px"><b style="color:var(--texte-fort)">Module pilote.</b> Thème&nbsp;: la santé mentale des étudiants. Public&nbsp;: les enseignants de l’enseignement supérieur, dans leur rôle d’enseignant. Le niveau 2 «&nbsp;Repérer la souffrance&nbsp;» est conçu en entier, avec l’entrée dans le parcours et le choix du niveau. Les niveaux 1 et 3 prennent la forme de modules témoins, réduits à une activité représentative chacun. Un fil rouge relie les trois niveaux&nbsp;: la situation fictive d’un étudiant, vue depuis la place de l’enseignant, traitée avec un guidage qui diminue d’un niveau à l’autre.</p>
   </div>
 
   <section aria-labelledby="t-infos">
@@ -233,26 +234,23 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
   <section aria-labelledby="t-contexte">
     <div class="section-tete">
       <h2 id="t-contexte">Contexte du projet</h2>
-      <p class="sous-titre">Le projet vise à proposer un des trois parcours d’apprentissage gradués&nbsp;: comprendre la santé publique, comprendre la santé mentale, comprendre la communication en santé. Chaque parcours est organisé en trois niveaux de progression.</p>
+      <p class="sous-titre">Le module pilote porte sur la santé mentale des étudiants. Il s’adresse aux enseignants de l’enseignement supérieur, en tant qu’enseignants&nbsp;: ce qu’ils peuvent comprendre, repérer et faire depuis leur place, et les limites de ce rôle. Ce n’est ni une formation de secouriste en santé mentale, ni un protocole propre à un établissement.</p>
     </div>
     <div class="niveaux">
-      <div class="niveau">
-        <div class="niveau-nom"><span class="num">Niveau 1</span><b>Se repérer</b></div>
-        <div class="col"><h4>Santé publique</h4><p>Distinguer santé individuelle et populationnelle&nbsp;; reconnaître les déterminants de santé&nbsp;; comprendre prévention et promotion de la santé.</p></div>
-        <div class="col"><h4>Santé mentale</h4><p>Distinguer santé mentale, souffrance psychique et troubles&nbsp;; comprendre leur diversité et leurs déterminants.</p></div>
-        <div class="col"><h4>Communication en santé</h4><p>Identifier les objectifs, les publics et les acteurs&nbsp;; distinguer informer, sensibiliser et accompagner un changement.</p></div>
+      <div class="niveau deux-col">
+        <div class="niveau-nom"><span class="num">Niveau 1</span><b>Connaissances de base</b></div>
+        <div class="col"><h4>Ce que l’enseignant apprend</h4><p>Le continuum de la santé mentale&nbsp;; ce qui distingue stress, souffrance et trouble&nbsp;; les facteurs propres aux étudiants (précarité, isolement, pression des évaluations, transitions).</p></div>
+        <div class="col"><h4>Spécificité du contexte</h4><p>Démonter les idées reçues, comme «&nbsp;c’est le stress normal des examens&nbsp;» ou «&nbsp;ce n’est pas mon rôle&nbsp;».</p></div>
       </div>
-      <div class="niveau">
-        <div class="niveau-nom"><span class="num">Niveau 2</span><b>Analyser</b></div>
-        <div class="col"><h4>Santé publique</h4><p>Interpréter un indicateur&nbsp;; distinguer association et causalité&nbsp;; analyser les inégalités sociales de santé et les limites d’une intervention.</p></div>
-        <div class="col"><h4>Santé mentale</h4><p>Examiner un discours ou un chiffre&nbsp;; repérer les simplifications, la médicalisation excessive et les mécanismes de stigmatisation.</p></div>
-        <div class="col"><h4>Communication en santé</h4><p>Analyser le cadrage d’un message, ses présupposés, son accessibilité et ses effets possibles&nbsp;; examiner la place donnée aux personnes concernées.</p></div>
+      <div class="niveau deux-col">
+        <div class="niveau-nom"><span class="num">Niveau 2 · module pilote</span><b>Repérer la souffrance</b></div>
+        <div class="col"><h4>Ce que l’enseignant apprend</h4><p>Les signes observables depuis sa place&nbsp;: absences, rendus qui décrochent, changement de comportement en cours, contenu d’un courriel.</p></div>
+        <div class="col"><h4>Spécificité du contexte</h4><p>Observer sans diagnostiquer, dans une relation où l’enseignant est aussi celui qui évalue.</p></div>
       </div>
-      <div class="niveau">
-        <div class="niveau-nom"><span class="num">Niveau 3</span><b>Mobiliser</b></div>
-        <div class="col"><h4>Santé publique</h4><p>Analyser un problème de santé publique et proposer une réponse argumentée, en explicitant ses limites.</p></div>
-        <div class="col"><h4>Santé mentale</h4><p>Analyser une situation et proposer des pistes de prévention ou de promotion de la santé mentale adaptées au contexte.</p></div>
-        <div class="col"><h4>Communication en santé</h4><p>Concevoir une action de communication&nbsp;: objectifs, publics, messages, supports, participation et évaluation.</p></div>
+      <div class="niveau deux-col">
+        <div class="niveau-nom"><span class="num">Niveau 3</span><b>Accompagner et agir</b></div>
+        <div class="col"><h4>Ce que l’enseignant apprend</h4><p>Ouvrir une conversation, adapter ce qui relève de sa pédagogie, orienter vers les services de l’établissement, réagir en cas d’urgence, connaître les limites de son rôle.</p></div>
+        <div class="col"><h4>Spécificité du contexte</h4><p>Les procédures varient selon l’établissement&nbsp;: le parcours prévoit un emplacement «&nbsp;ressources de votre établissement&nbsp;».</p></div>
       </div>
     </div>
     <p class="note apres">Ce référentiel est une base de travail. Il pourra être précisé pendant le stage.</p>
@@ -308,10 +306,10 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
     </div>
     <ol class="numeros">
       <li><span class="pastille">1</span><div><h3>Cadrage et revue de littérature</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Cartographie des méthodes et de leur niveau de preuve.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Modèle cognitif de l’apprenant, trois axes.</p><p><b style="color:var(--texte-fort)">UX.</b> Choix de la démarche (recherche orientée par la conception) et du type de prototype.</p></div><span class="heures">35<small>h</small></span></li>
-      <li><span class="pastille">2</span><div><h3>Recherche utilisateur</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Attentes et habitudes d’apprentissage en ligne.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axe 1&nbsp;: catégories spontanées, conceptions erronées.</p><p><b style="color:var(--texte-fort)">UX.</b> 6 à 8 entretiens, tri de cartes ouvert en ligne (une dizaine de participants), personas.</p></div><span class="heures">45<small>h</small></span></li>
+      <li><span class="pastille">2</span><div><h3>Recherche utilisateur</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Attentes, contraintes de temps et habitudes de formation des enseignants.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axe 1&nbsp;: catégories spontanées, conceptions erronées.</p><p><b style="color:var(--texte-fort)">UX.</b> 6 à 8 entretiens avec des enseignants, tri de cartes ouvert en ligne (une dizaine d’enseignants), personas.</p></div><span class="heures">45<small>h</small></span></li>
       <li><span class="pastille">3</span><div><h3>Architecture des parcours</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Sélection de 2 ou 3 méthodes pour le module pilote.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axes 2 et 3&nbsp;: choix du niveau, progression, guidage dégressif.</p><p><b style="color:var(--texte-fort)">UX.</b> Architecture de l’information, carte d’expérience, maquettes de basse fidélité.</p></div><span class="heures">50<small>h</small></span></li>
       <li><span class="pastille">4</span><div><h3>Prototypage</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Mise en œuvre des méthodes retenues.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Feedbacks et consignes conçus pour limiter la charge.</p><p><b style="color:var(--texte-fort)">UX.</b> Prototype interactif&nbsp;: entrée et choix du niveau, module de niveau 2, modules témoins des niveaux 1 et 3&nbsp;; rédaction des consignes, accessibilité.</p></div><span class="heures">65<small>h</small></span></li>
-      <li><span class="pastille">5</span><div><h3>Tests et améliorations</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Expérience de chaque méthode&nbsp;: comprise, utilisée, appréciée.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axes 2 et 3 observés&nbsp;: choix du niveau, effort mental perçu, difficultés verbalisées.</p><p><b style="color:var(--texte-fort)">UX.</b> Deux cycles de 5 participants, novices et familiarisés&nbsp;: tâches dans le niveau choisi et dans le niveau voisin, verbalisation à voix haute, SUS. Inspection heuristique du gabarit sur les deux autres parcours.</p></div><span class="heures">65<small>h</small></span></li>
+      <li><span class="pastille">5</span><div><h3>Tests et améliorations</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Expérience de chaque méthode&nbsp;: comprise, utilisée, appréciée.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Axes 2 et 3 observés&nbsp;: choix du niveau, effort mental perçu, difficultés verbalisées.</p><p><b style="color:var(--texte-fort)">UX.</b> Deux cycles de 5 enseignants, novices et déjà sensibilisés&nbsp;: tâches dans le niveau choisi et dans le niveau voisin, verbalisation à voix haute, SUS. Inspection heuristique du gabarit sur les deux autres parcours.</p></div><span class="heures">65<small>h</small></span></li>
       <li><span class="pastille">6</span><div><h3>Synthèse et transmission</h3><p><b style="color:var(--texte-fort)">Méthodes innovantes.</b> Recommandations par méthode.</p><p><b style="color:var(--texte-fort)">Psychologie cognitive.</b> Statut de preuve de chaque règle.</p><p><b style="color:var(--texte-fort)">UX.</b> Guide de conception réutilisable.</p></div><span class="heures">41<small>h</small></span></li>
     </ol>
     <div class="total"><b>Total</b><span class="heures">301<small>h</small></span></div>
@@ -365,8 +363,8 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
         <h3>Recherche utilisateur</h3>
         <h4>Méthodes</h4>
         <ul class="puces">
-          <li>6 à 8 entretiens</li>
-          <li>Tri de cartes ouvert en ligne, une dizaine de participants</li>
+          <li>6 à 8 entretiens avec des enseignants</li>
+          <li>Tri de cartes ouvert en ligne, une dizaine d’enseignants</li>
           <li>Personas et carte d’expérience</li>
         </ul>
         <h4>Ce qui est évalué</h4>
@@ -376,7 +374,7 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
         <h3>Tests avec utilisateurs</h3>
         <h4>Méthodes</h4>
         <ul class="puces">
-          <li>Deux cycles de 5 participants, novices et familiarisés</li>
+          <li>Deux cycles de 5 enseignants, novices et déjà sensibilisés</li>
           <li>Tâches&nbsp;: choisir un niveau, trouver une ressource, comprendre une consigne, réaliser une activité, interpréter un feedback</li>
           <li>Verbalisation à voix haute, taux de réussite</li>
           <li>SUS et échelle d’effort mental perçu</li>
@@ -403,6 +401,7 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
         <li>La démonstration de l’efficacité pédagogique et les comparaisons statistiques entre versions</li>
         <li>La construction d’un test de niveau validé</li>
         <li>La démonstration d’une progression réelle des apprenants d’un niveau à l’autre, qui demanderait un suivi dans le temps</li>
+        <li>Une formation de secouriste en santé mentale, ou un protocole propre à un établissement&nbsp;: le parcours prévoit un emplacement «&nbsp;ressources de votre établissement&nbsp;»</li>
         <li>Le développement technique complet de la plateforme</li>
         <li>L’évaluation de toutes les méthodes innovantes&nbsp;: seules 2 ou 3 sont mises en œuvre dans le module pilote</li>
         <li>L’oculométrie et la neuro-imagerie</li>
@@ -420,7 +419,8 @@ section{margin-top:40px; padding-top:30px; border-top:1px solid var(--bordure)}
       <li>Rédiger une note d’information pour les participants</li>
       <li>Rédiger un formulaire de consentement</li>
       <li>Définir le mode de stockage, la durée de conservation et l’anonymisation des enregistrements, conformément au RGPD</li>
-      <li>Si les contenus abordent la santé mentale, prévoir des précautions pour les personnes concernées par un trouble psychique&nbsp;: contenus abordés, possibilité d’interrompre, ressources d’aide à indiquer</li>
+      <li>Contenus sensibles&nbsp;: annoncer dans la note d’information que le parcours aborde la souffrance psychique, garantir le droit de s’arrêter à tout moment, remettre les ressources d’aide (3114, services de santé de l’établissement), et ne pas interroger les participants sur leur propre santé mentale</li>
+      <li>Appliquer aux contenus les recommandations de l’OMS sur le suicide, et faire figurer l’encadré 3114 sur tout écran qui aborde la détresse</li>
       <li>Demander à l’université si un avis de comité d’éthique de la recherche est nécessaire</li>
       <li>Identifier dès la phase 1 les publics auprès desquels recruter une vingtaine de participants au total (entretiens, tri de cartes, tests)</li>
     </ul>
